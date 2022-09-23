@@ -3,7 +3,7 @@ video {
     width: 100%;
     height: 100%;
     position: fixed;
-    z-index: 9999;
+    z-index: -1;
 }
 
 .main-container {
@@ -13,7 +13,9 @@ video {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    row-gap: 20px;
+   /* justify-content: center; */
+    align-items: center; 
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
     object-fit: contain;
 }
@@ -22,4 +24,12 @@ video {
     color: #fff;
     font-size: 100px;
     margin-top: 80px;
+}
+
+.main-container > p{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   /* margin: 0 auto; */
+    text-align: center;
 }
