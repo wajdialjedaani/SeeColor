@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "seecolor",
+    "public": "seecolor/Javascript-stuff/testing",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -9,7 +9,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/Javascript-stuff/testing/public/index.html"
+        "destination": "/index.html"
       }
     ]
   },
