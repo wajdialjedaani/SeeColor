@@ -8,7 +8,7 @@
   .home,
   .project-background,
   .project,
-  .research-links
+  .research-links,
   .register-or-login {
     display: flex;
     height: 90vh;
@@ -18,7 +18,7 @@
   }
   
   .project-background {
-    background-image: url('/images/img-1.jpg');
+    /* background-image: url('../images/img-1.jpg'); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -27,7 +27,7 @@
   }
 
   .project {
-    background-image: url('/images/img-2.jpg');
+    /* background-image: url('../images/img-2.jpg'); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -36,7 +36,7 @@
   }
 
   .research-links {
-    background-image: url('/images/img-3.jpg');
+    /* background-image: url('../images/img-3.jpg'); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -45,10 +45,10 @@
   }
 
   .register-or-login {
-    background-image: url('/images/img-4.jpg');
+    /* background-image: url('../images/img-4.jpg'); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    color: #fff;
+    /* color: #fff; */
     font-size: 100px;
   }
