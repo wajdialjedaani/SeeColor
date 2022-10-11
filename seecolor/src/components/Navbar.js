@@ -62,8 +62,15 @@ function Navbar() {
                 </ul>
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li className='nav-item'>
-                        <Link to='/register-or-login' className='nav-links' onClick={closeMobileMenu}>
-                            Register/Login
+                        <Link to='/register' className='nav-links' onClick={closeMobileMenu}>
+                            Register
+                        </Link>
+                    </li>
+                </ul>
+                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                    <li className='nav-item'>
+                        <Link to='/login' className='nav-links' onClick={closeMobileMenu}>
+                            Login
                         </Link>
                     </li>
                 </ul>
