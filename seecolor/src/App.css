@@ -44,11 +44,20 @@
     font-size: 100px;
   }
 
-  .register-or-login {
+  .register {
     /* background-image: url('../images/img-4.jpg'); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     /* color: #fff; */
-    font-size: 100px;
+    font-size: 2vw;
+  }
+
+  .login {
+    /* background-image: url('../images/img-4.jpg'); */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* color: #fff; */
+    font-size: 2vw;
   }
