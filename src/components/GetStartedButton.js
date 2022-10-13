@@ -12,7 +12,7 @@ export const GetStartedButton = ({children, type, onClick, buttonStyle, buttonSi
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
     return (
-        <Link to='/register-or-login' className='btn-mobile'>
+        <Link to='/register' className='btn-mobile'>
             <button
             className={`btn ${checkButtonStyle} ${checkButtonSize}`}
             onClick={onClick}
