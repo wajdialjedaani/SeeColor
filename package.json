@@ -2,7 +2,7 @@
   "name": "webpack-react",
   "version": "1.0.0",
   "description": "",
-  "main": "/src/index.js",
+  "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --mode production --progress"
