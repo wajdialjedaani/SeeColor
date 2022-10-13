@@ -1,4 +1,4 @@
-import React, { useEffect, useState, navigate } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../../firebase.js"
@@ -26,6 +26,7 @@ function Dashboard() {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
+    navigate();
   }, [user, loading]);
   return (
     <div className="dashboard">
