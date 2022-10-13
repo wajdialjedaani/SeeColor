@@ -1,0 +1,36 @@
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+}
+
+.main-container {
+    /* background: url('/home/bob/Documents/testing/img-home.jpg') center center/cover no-repeat; */
+    /* margin-top: 80px; */
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+   /* justify-content: center; */
+    align-items: center; 
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
+    object-fit: contain;
+}
+
+.main-container > h1 {
+    color: #fff;
+    font-size: 100px;
+    margin-top: 80px;
+}
+
+.main-container > p{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   /* margin: 0 auto; */
+    text-align: center;
+    font-size: 30px;
+}
