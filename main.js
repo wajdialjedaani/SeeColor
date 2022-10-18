@@ -31,50 +31,27 @@ let imgInput = document.getElementById('testImage');
     var imageData = context.getImageData(0, 0, 400, 300);
     var data = imageData.data;
 
-    const rbgValues = [];
 
     // iterate over all pixels
     for(var i = 0; i < data.length; i += 4) {
       var red = data[i];
       var green = data[i + 1];
       var blue = data[i + 2];
-      var alpha = data[i + 3];
+      //var alpha = data[i + 3];
      //alert(red + " " + green + " " + blue + " " + alpha);
 
-     rbgValues[i] = data[i];
-     rbgValues[i + 1] = data[i + 1];
-     rbgValues[i + 2] = data[i + 2];
-
-     alert(rgbValues[i] + " " + rgbValues[i+1] + " " + rgbValues[i+2]);
-
-     /* const rgb = {
-        r :red,
-        g : green,
-        b : blue
-    };
-
-      //approach 1
-      if (rbgValues.find(rgb) == undefined){
-        rbgValues.push(rgb);
-        alert("added");
+    for (var j = 0; j < data.length; j += 4){
+      if (red == data[j] && green == data[j+1] && blue == data[j+2] ){
+        alert("same");
+        //colours are the same, dont sent to test
       }
-
-      //approach 2
-        var pushRGB = true;
-      for (var j = 0; j < rbgValues.length; j++){
-        if (rbgValues[j].r == red && rbgValues.g == green == rbgValues.b == blue){
-            pushRGB = false
-        }
+      else {
+        alert("not same" + red + " " + green + " " + blue + " " + data[j] + " " + data[j+1] + " " + data[j+2]);
+        //colours are not the same, send to test
       }
+     }
 
-      if(pushRGB){
-        rbgValues.push(rgb);
-        alert(rgb.red);
-      }*/
     }
-
-   
   }
 
   document.getElementById('testButton').addEventListener('click', getImageData);
-
