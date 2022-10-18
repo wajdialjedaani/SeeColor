@@ -24,22 +24,57 @@ let imgInput = document.getElementById('testImage');
   });
 
 
-  function drawImage() {
+  function getImageData() {
     var canvas = document.getElementById('testCanvas');
     var context = canvas.getContext('2d');
 
-    var imageData = context.getImageData(10, 10, 50, 50);
+    var imageData = context.getImageData(0, 0, 400, 300);
     var data = imageData.data;
 
+    const rbgValues = [];
+
     // iterate over all pixels
-    for(var i = 0, n = data.length; i < n; i += 4) {
+    for(var i = 0; i < data.length; i += 4) {
       var red = data[i];
       var green = data[i + 1];
       var blue = data[i + 2];
       var alpha = data[i + 3];
-      alert(red + " " + green + " " + blue + " " + alpha);
+     //alert(red + " " + green + " " + blue + " " + alpha);
+
+     rbgValues[i] = data[i];
+     rbgValues[i + 1] = data[i + 1];
+     rbgValues[i + 2] = data[i + 2];
+
+     alert(rgbValues[i] + " " + rgbValues[i+1] + " " + rgbValues[i+2]);
+
+     /* const rgb = {
+        r :red,
+        g : green,
+        b : blue
+    };
+
+      //approach 1
+      if (rbgValues.find(rgb) == undefined){
+        rbgValues.push(rgb);
+        alert("added");
+      }
+
+      //approach 2
+        var pushRGB = true;
+      for (var j = 0; j < rbgValues.length; j++){
+        if (rbgValues[j].r == red && rbgValues.g == green == rbgValues.b == blue){
+            pushRGB = false
+        }
+      }
+
+      if(pushRGB){
+        rbgValues.push(rgb);
+        alert(rgb.red);
+      }*/
     }
+
    
   }
 
-  document.getElementById('testButton').addEventListener('click', drawImage);
+  document.getElementById('testButton').addEventListener('click', getImageData);
+
