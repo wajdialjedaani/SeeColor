@@ -1,3 +1,6 @@
+let worstContrast = 100;
+let worstColours = [];
+
 //image upload
 let imgInput = document.getElementById('testImage');
   imgInput.addEventListener('change', function(e) {
@@ -49,8 +52,9 @@ let imgInput = document.getElementById('testImage');
         testTwoColours(red, green, blue, data[j], data[j+1], data[j+2] );
       }
      }
-
+     alert(worstContrast);
     }
+   
   }
 
   document.getElementById('testButton').addEventListener('click', getImageData);
@@ -82,6 +86,16 @@ function testTwoColours(r1, g1, b1, r2, g2, b2){
     ? ((lum2 + 0.05) / (lum1 + 0.05))
     : ((lum1 + 0.05) / (lum2 + 0.05));
 
+    if (ratio < worstContrast){
+      worstContrast = ratio;
+      worstColours[0] = r1;
+      worstColours[1] = g1;
+      worstColours[2] = b1;
+      worstColours[3] = r2;
+      worstColours[4] = g2;
+      worstColours[5] = b2;
+    }
+
     const result = `
                 AA-level large text: ${ratio < 1/3 ? 'PASS' : 'FAIL' }
                 AA-level small text: ${ratio < 1/4.5 ? 'PASS' : 'FAIL' }
@@ -89,5 +103,5 @@ function testTwoColours(r1, g1, b1, r2, g2, b2){
                 AAA-level small text: ${ratio < 1/7 ? 'PASS' : 'FAIL' }`;
 
  
-  alert(result);
+  //alert(result);
 }
