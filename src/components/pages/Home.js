@@ -12,7 +12,7 @@ import '../../App.css';
 import { Button } from '../Button';
 import { GetStartedButton } from '../GetStartedButton';
 import '../MainSection.css';
-import image from '../../videos/synthwave.gif'
+import image from '../../images/unt-box.jpg'
 
 import {
   getAuth,
@@ -339,7 +339,7 @@ export function Home() {
   return (
     <div id="LoginPageDiv">
         <div className='main-container'>
-        <img src={image} alt="synthwave background"/>
+        <img src={image} alt="unt background"/>
         <h1>HOW ACCESSIBLE IS YOUR COLOR?</h1>
         <p>Let's find out.</p>
         
