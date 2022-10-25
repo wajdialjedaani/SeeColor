@@ -1,40 +1,74 @@
-.login {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
+#LoginPageSignInFormDiv {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px #5a5a5a;
+  grid-column: 2/3;
+  grid-row: 3/4;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 5em;
+  width: 33%;
+  z-index: 1;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
-.login__container {
-  display: flex;
-  flex-direction: column;
+
+#LoginPageSignInFormDiv h2 {
+  margin: 0;
   text-align: center;
-  background-color: #dcdcdc;
-  padding: 30px;
-}
-.login__textBox {
-  padding: 10px;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-.login__btn {
-  padding: 10px;
-  font-size: 18px;
-  margin-bottom: 10px;
+  background-color: #3c1362;
+  cursor: pointer;
+  color: #f9f9f9;
   border: none;
-  color: white;
-  background-color: black;
+  font-size: 18pt;
+  padding: 0.35em;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
-.login__google {
-  background-color: #4285f4;
-}
-.forgot__password {
-  border: none;
-  color: white;
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-.login div {
-  margin-top: 7px;
+
+  
+  #SignInForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding: 2em;
+  margin-right: 1em;
+  margin-left: 1em;
+  gap: 2em;
+  }
+  
+  #SignInForm input {
+  color: #333;
+  background-color: #f6f6f6;
+  border-bottom: 3pt solid #3c1362;
+  border-radius: 4px;
+  }
+  
+  #SignInForm input::placeholder {
+  color: #333;
+  }
+  
+  #SignInForm input:focus-visible {
+  outline: none;
+  }
+  
+  #LoginBtnsSection {
+  font-size: 16pt;
+  display: flex;
+  justify-content: space-between;
+  }
+
+  #SignUpBtnsSection{
+  background-color: #f9f9f9;
+    border: none;
+    border-bottom: 3pt solid #3c1362;
+    color: #333;
+    font-size: 16pt;
+    border-radius: 10px;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    transition: box-shadow .2s ease-in-out;
 }

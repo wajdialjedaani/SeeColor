@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { Link, useHistory } from "react-router-dom";
-import { auth, signInWithGoogle } from "../../firebase.js";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase.js";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import "./Register.css";
 import { get } from "firebase/database";
+import Home from "./Home.js";
 
 
 function Register() {
@@ -23,43 +24,45 @@ function Register() {
     if (user) navigate.replace("/dashboard");
   }, [user, loading]);
   return (
-    <div className="register">
-      <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button className="register__btn" onClick={register}>
-          Register
-        </button>
-        <button
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
-        >
-          Register with Google
-        </button>
-        <div>
-          Already have an account? <Link to="/">Login</Link> now.
+    <div id="RegistrationPageSignInFormDiv">
+          <h2>SIGN UP</h2>
+          <form onSubmit={Home.handleSignUpSubmit} id="SignInForm">
+            <input
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={Home.handleEmailChange}
+              onBlur={Home.validateEmail}
+            />
+            <input
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={Home.handlePasswordChange}
+              onBlur={Home.validateConfirmPassword}
+            />
+            <input
+              placeholder="Confirm Password"
+              type="password"
+              value={Home.confirmPassword}
+              onChange={Home.handleConfirmPasswordChange}
+              onBlur={Home.validateConfirmPassword}
+            />
+            <div id="LoginBtnsSection">
+              <input
+                type="submit"
+                value="Sign Up"
+                className="PopUpAccountMenuDivbtn"
+              />
+              <button
+                id="SignInWithGooglebtn"
+                onClick={Home.handleLoginWithGoogleSubmit}
+              >
+                Sign Up with Google
+              </button>
+            </div>
+          </form>
         </div>
-      </div>
-    </div>
   );
 }
 export default Register;

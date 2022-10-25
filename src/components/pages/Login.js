@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithGoogle } from "../../firebase.js";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase.js";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./Login.css";
+import Home  from "./Home.js";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -18,41 +19,50 @@ function Login() {
     if (user) navigate("/dashboard");
   }, [user, loading]);
   return (
-    <div className="login">
-      <div className="login__container">
-        <input
-          type="text"
-          className="login__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="login__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button
-          className="login__btn"
-          onClick={() => signInWithEmailAndPassword(email, password)}
-        >
-          Login
-        </button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
-        </button>
-        <button 
-          className="forgot__password"
-        >
-          <Link to="/reset">Forgot Password</Link>
-        </button>
-        <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
-        </div>
+    <div id="LoginPageSignInFormDiv">
+        <h2>LOGIN</h2>
+        <form onSubmit={Home.handleLoginSubmit} id="SignInForm">
+          <input
+            placeholder="Email"
+            type="email"
+            value={email}
+            onChange={Home.handleEmailChange}
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            value={password}
+            onChange={Home.handlePasswordChange}
+          />
+
+          <div id="LoginBtnsSection">
+            <input
+              type="submit"
+              value="Login"
+              className="PopUpAccountMenuDivbtn"
+            />
+            <a href="/register"
+              id="SignUpBtnsSection">
+              Sign Up
+            </a>
+          </div>
+          <div className="GuestLinkContainer">
+            <button
+              id="SignInWithGooglebtn"
+              onClick={Home.handleLoginWithGoogleSubmit}
+            >
+              Login with Google
+            </button>
+          </div>
+        </form>
       </div>
-    </div>
   );
 }
 export default Login;
+
+/*
+
+            <a href="/register">
+              <button className="PopUpAccountMenuDivbtn">Sign Up</button>
+            </a>
+            */

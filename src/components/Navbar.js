@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css';
 import { Button } from './Button';
+import handleGuestModeSubmit from './pages/Home.js';
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -62,8 +63,8 @@ function Navbar() {
                 </ul>
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li className='nav-item'>
-                        <Link to='/register' className='nav-links' onClick={closeMobileMenu}>
-                            Register
+                        <Link to='/guest' className='nav-links' onClick={handleGuestModeSubmit}>
+                            Continue as Guest
                         </Link>
                     </li>
                 </ul>

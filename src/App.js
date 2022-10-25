@@ -17,7 +17,6 @@ function App() {
         <Navbar />
         <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route exact path="/" element={<Login />} />
         <Route exact path="/reset" element={<Reset />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route path="/project-background" element={<ProjectBackground />}></Route>
