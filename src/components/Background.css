@@ -10,12 +10,9 @@
 }
 
 .background-container > h1 {
-    margin-top: 80px;
-}
-
-.background-container > h1 {
     color: #fff;
     font-size: 50px;
+    padding: 5%;
 }
 
 .background-container > p {
@@ -23,4 +20,6 @@
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
+    color: #fff;
+    padding-bottom: 3%;
 }

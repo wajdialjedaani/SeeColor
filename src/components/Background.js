@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css';
 import './Background.css';
-import imagebg from "https://www.salesforce.org/wp-content/uploads/2017/02/University-of-North-Texas-Campus.jpg";
+import imagebg from '../images/unt-sky.jpeg';
 
 function Background() {
     return (
