@@ -48,7 +48,7 @@
   .nav-item {
     height: 80px;
     display: flex;
-    justify content: center;
+    justify-content: center;
     text-align: center;
   }
   
