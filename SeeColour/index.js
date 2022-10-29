@@ -1,3 +1,21 @@
+
+//from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
+//  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
+const rgbToHex = (pixel) => {
+  const componentToHex = (c) => {
+    const hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  };
+
+  return (
+    "#" +
+    componentToHex(pixel.r) +
+    componentToHex(pixel.g) +
+    componentToHex(pixel.b)
+  ).toUpperCase();
+};
+
+
 //from https://dev.to/alvaromontoro/building-your-own-color-contrast-checker-4j7o
 //return luminance of an rgb value
 function luminance(r, g, b) {
@@ -151,6 +169,11 @@ const contrastTest = (rgbTestValues) =>{
   for (let i = 0; i < ratios.length; i += 1){
     const colorElement = document.createElement("div");
     colorElement.appendChild(document.createTextNode(ratios[i].contrastRatio));
+
+    const hex1 = rgbToHex(ratios[i].colour1);
+    const hex2= rgbToHex(ratios[i].colour2);
+    colorElement.appendChild(document.createTextNode(hex1));
+    colorElement.appendChild(document.createTextNode(hex2));
     resultsContainer.appendChild(colorElement);
   }
 }
