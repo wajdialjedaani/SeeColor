@@ -1,4 +1,3 @@
-
 //from https://dev.to/alvaromontoro/building-your-own-color-contrast-checker-4j7o
 //return luminance of an rgb value
 function luminance(r, g, b) {
@@ -122,7 +121,7 @@ const quantization = (rgbValues, depth) => {
 };
 
 const contrastTest = (rgbTestValues) =>{
-  const ratioIndexes = [];
+  const ratios = [];
   
   for (let i = 0; i < rgbTestValues.length; i++){
     const lumOne = luminance(rgbTestValues[i].r,rgbTestValues[i].g, rgbTestValues[i].b);
@@ -135,25 +134,23 @@ const contrastTest = (rgbTestValues) =>{
       const ratio = lumOne > lumTwo 
       ? ((lumTwo  + 0.05) / (lumOne + 0.05))
       : ((lumOne + 0.05) / (lumTwo  + 0.05));
-     // alert(ratio);
+     //alert(ratio);
 
-      const indexes = {
-        colour1: i,
-        colour2: j,
+      const ratioAndColours = {
+        colour1: rgbTestValues[i],
+        colour2: rgbTestValues[j],
         contrastRatio: ratio,
       };
 
-      ratioIndexes.push(indexes);
+      ratios.push(ratioAndColours);
       }
     }
   }
   const resultsContainer = document.getElementById("results");
   resultsContainer.innerHTML = "";
-  for (let i = 0; i < ratioIndexes.length; i++){
+  for (let i = 0; i < ratios.length; i += 1){
     const colorElement = document.createElement("div");
-    colorElement.appendChild(document.createTextNode(rgbTestValues[ratioIndexes[i].colour1]));
-    colorElement.appendChild(document.createTextNode(rgbTestValues[ratioIndexes[i].colour2]));
-    colorElement.appendChild(document.createTextNode(ratioIndexes[i].ratio));
+    colorElement.appendChild(document.createTextNode(ratios[i].contrastRatio));
     resultsContainer.appendChild(colorElement);
   }
 }
