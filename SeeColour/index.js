@@ -140,11 +140,12 @@ const quantization = (rgbValues, depth) => {
 
 const contrastTest = (rgbTestValues) =>{
   const ratios = [];
+  let skip = false;
   
   for (let i = 0; i < rgbTestValues.length; i++){
     const lumOne = luminance(rgbTestValues[i].r,rgbTestValues[i].g, rgbTestValues[i].b);
 
-    for(let j = 1; j < rgbTestValues.length; j++){
+    for(let j = i + 1; j < rgbTestValues.length; j++){
       const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
       if (i == j){
       }
@@ -154,6 +155,17 @@ const contrastTest = (rgbTestValues) =>{
       : ((lumOne + 0.05) / (lumTwo  + 0.05));
      //alert(ratio);
 
+     for (let k = 0; k < ratios.length; k++){
+      if (ratios[k].colour1.r == rgbTestValues[i].r && ratios[k].colour1.g == rgbTestValues[i].g && ratios[k].colour1.b == rgbTestValues[i].b &&
+        ratios[k].colour2.r == rgbTestValues[j].r && ratios[k].colour2.g == rgbTestValues[j].g && ratios[k].colour2.b == rgbTestValues[j].b
+        || 
+        ratios[k].colour1.r == rgbTestValues[j].r && ratios[k].colour1.g == rgbTestValues[j].g && ratios[k].colour1.b == rgbTestValues[j].b &&
+        ratios[k].colour2.r == rgbTestValues[i].r && ratios[k].colour2.g == rgbTestValues[i].g && ratios[k].colour2.b == rgbTestValues[i].b) {
+          skip = true;
+        }
+     }
+
+     if (!skip){
       const ratioAndColours = {
         colour1: rgbTestValues[i],
         colour2: rgbTestValues[j],
@@ -163,18 +175,26 @@ const contrastTest = (rgbTestValues) =>{
       ratios.push(ratioAndColours);
       }
     }
+    }
   }
   const resultsContainer = document.getElementById("results");
   resultsContainer.innerHTML = "";
   for (let i = 0; i < ratios.length; i += 1){
-    const colorElement = document.createElement("div");
-    colorElement.appendChild(document.createTextNode(ratios[i].contrastRatio));
+    const contrastElement = document.createElement("div");
+    const colour1Element = document.createElement("div");
+    const colour2Element = document.createElement("div");
+    contrastElement.appendChild(document.createTextNode(ratios[i].contrastRatio.toFixed(5)));
 
     const hex1 = rgbToHex(ratios[i].colour1);
     const hex2= rgbToHex(ratios[i].colour2);
-    colorElement.appendChild(document.createTextNode(hex1));
-    colorElement.appendChild(document.createTextNode(hex2));
-    resultsContainer.appendChild(colorElement);
+    colour1Element.style.backgroundColor = hex1;
+    colour2Element.style.backgroundColor = hex2;
+    colour1Element.appendChild(document.createTextNode(hex1));
+    colour2Element.appendChild(document.createTextNode(hex2));
+
+    resultsContainer.appendChild(contrastElement);
+    resultsContainer.appendChild(colour1Element);
+    resultsContainer.appendChild(colour2Element);
   }
 }
 
