@@ -2,8 +2,6 @@
     background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
     height: 80px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 1.2rem;
     position: sticky;
     top: 0;
@@ -41,12 +39,12 @@
     list-style: none;
     text-align: center;
     width: 60vw;
-    justify-content: end;
-    margin-right: 2rem;
+    justify-content: center;
   }
   
   .nav-item {
     height: 80px;
+    display: flex;
   }
   
   .nav-links {

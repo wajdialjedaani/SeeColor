@@ -1,0 +1,6 @@
+img {
+    position: -webkit-sticky;
+    position: sticky;
+    width: 350px;
+	top: 0;
+}
