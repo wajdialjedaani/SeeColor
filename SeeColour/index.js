@@ -138,24 +138,27 @@ const quantization = (rgbValues, depth) => {
   ];
 };
 
+//test contrast of image
 const contrastTest = (rgbTestValues) =>{
+  //stores rgb pairs and their contrast
   const ratios = [];
   let skip = false;
   
+  //get the luminance of every value pair
   for (let i = 0; i < rgbTestValues.length; i++){
     const lumOne = luminance(rgbTestValues[i].r,rgbTestValues[i].g, rgbTestValues[i].b);
 
     for(let j = i + 1; j < rgbTestValues.length; j++){
-      
+      const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
       if (i == j){
       }
       else {
-        const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
+        //use luminance to calculate contrast
       const ratio = lumOne > lumTwo 
       ? ((lumTwo  + 0.05) / (lumOne + 0.05))
       : ((lumOne + 0.05) / (lumTwo  + 0.05));
-     //alert(ratio);
 
+        //check if rgb pair is all ready stored
      for (let k = 0; k < ratios.length; k++){
       if (ratios[k].colour1.r == rgbTestValues[i].r && ratios[k].colour1.g == rgbTestValues[i].g && ratios[k].colour1.b == rgbTestValues[i].b &&
         ratios[k].colour2.r == rgbTestValues[j].r && ratios[k].colour2.g == rgbTestValues[j].g && ratios[k].colour2.b == rgbTestValues[j].b
@@ -166,19 +169,24 @@ const contrastTest = (rgbTestValues) =>{
         }
      }
 
+     //if it has been, skip adding again
+     //if not, add it
      if (!skip){
       const ratioAndColours = {
         colour1: rgbTestValues[i],
         colour2: rgbTestValues[j],
         contrastRatio: ratio,
       };
-
-      skip = false;
+      
       ratios.push(ratioAndColours);
       }
+
+      skip = false;
     }
     }
   }
+
+  //display all value pairs and their contrast
   const resultsContainer = document.getElementById("results");
   resultsContainer.innerHTML = "";
   for (let i = 0; i < ratios.length; i += 1){
