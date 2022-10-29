@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css';
-import { Button } from './Button';
-import handleGuestModeSubmit from './pages/Home.js';
+//import { Button } from './Button';
+//import Home from './pages/Home.js';
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -61,9 +61,21 @@ function Navbar() {
                         </Link>
                     </li>
                 </ul>
+               {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} 
+                    <Link to='/register-or-login' className='Sign-Up' onClick={closeMobileMenu}></Link> */}
+            </div>
+        </nav>
+    </>
+  )
+}
+
+export default Navbar
+
+/* LOGIN REMOVED:
+
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li className='nav-item'>
-                        <Link to='/guest' className='nav-links' onClick={handleGuestModeSubmit}>
+                        <Link to='/project' className='nav-links' onClick={Home.handleGuestModeSubmit}>
                             Continue as Guest
                         </Link>
                     </li>
@@ -75,12 +87,4 @@ function Navbar() {
                         </Link>
                     </li>
                 </ul>
-               {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} 
-                    <Link to='/register-or-login' className='Sign-Up' onClick={closeMobileMenu}></Link> */}
-            </div>
-        </nav>
-    </>
-  )
-}
-
-export default Navbar
+                */

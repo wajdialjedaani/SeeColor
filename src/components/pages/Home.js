@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../images/seecolor.png";
 import Cookies from "universal-cookie";
-import { ToastContainer, toast } from "react-toastify";
+//import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Menu from "@mui/icons-material/Menu";
+//import Menu from "@mui/icons-material/Menu";
 
 import React from 'react'
 import '../../App.css';
@@ -41,7 +41,8 @@ export function Home() {
     }
   }, [navigate]);
 
-  function handleLoginSubmit(event) {
+  /* LOGIN DISABLED
+    function handleLoginSubmit(event) {
     event.preventDefault();
     toast.info("Login Request Sent", {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -71,7 +72,6 @@ export function Home() {
         console.error(err);
       });
   }
-
   function handleSignUpSubmit(event) {
     event.preventDefault();
     toast.info("Registeration Request Sent", {
@@ -154,7 +154,7 @@ export function Home() {
           position: toast.POSITION.BOTTOM_RIGHT,
           autoClose: 4000,
         });
-        navigate(`/guest`);
+        navigate(`/project`);
       })
       .catch((err) => {
         toast.error("Anonymously Sign In Failed", {
@@ -336,6 +336,7 @@ export function Home() {
     }
   }
 
+*/
   return (
     <div id="LoginPageDiv">
         <div className='main-container'>
@@ -361,12 +362,19 @@ export function Home() {
                 Get Started <br></br>
             </GetStartedButton>
         </div>
-    </div>
-      {mobileMenuHandler(mobileMenu)}
-      {HomePageModeHandler(homePageMode)}
-      <ToastContainer autoClose={4000} limit={3} />
+      </div>
     </div>
   );
 }
 
 export default Home;
+
+/* removed:
+
+</div>
+      {mobileMenuHandler(mobileMenu)}
+      {HomePageModeHandler(homePageMode)}
+      <ToastContainer autoClose={4000} limit={3} />
+    </div>
+
+    */
