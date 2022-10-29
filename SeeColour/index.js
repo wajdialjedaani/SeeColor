@@ -1,4 +1,3 @@
-
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
 const rgbToHex = (pixel) => {
@@ -150,9 +149,6 @@ const contrastTest = (rgbTestValues) =>{
 
     for(let j = i + 1; j < rgbTestValues.length; j++){
       const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
-      if (i == j){
-      }
-      else {
         //use luminance to calculate contrast
       const ratio = lumOne > lumTwo 
       ? ((lumTwo  + 0.05) / (lumOne + 0.05))
@@ -182,7 +178,6 @@ const contrastTest = (rgbTestValues) =>{
       }
 
       skip = false;
-    }
     }
   }
 
