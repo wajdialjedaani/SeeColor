@@ -138,57 +138,47 @@ const quantization = (rgbValues, depth) => {
   ];
 };
 
-
-//test contrast values
 const contrastTest = (rgbTestValues) =>{
-  //holds colour pairs and their contrast ratios
   const ratios = [];
   let skip = false;
   
   for (let i = 0; i < rgbTestValues.length; i++){
-    //get the luminance of every pair of rgb values
-    for(let j = i + 1; j < rgbTestValues.length; j++){
+    const lumOne = luminance(rgbTestValues[i].r,rgbTestValues[i].g, rgbTestValues[i].b);
 
-      const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
+    for(let j = i + 1; j < rgbTestValues.length; j++){
+      
       if (i == j){
       }
       else {
-
-        //check if we have this pair all ready
-        for (let k = 0; k < ratios.length; k++){
-          if (ratios[k].colour1.r == rgbTestValues[i].r && ratios[k].colour1.g == rgbTestValues[i].g && ratios[k].colour1.b == rgbTestValues[i].b &&
-            ratios[k].colour2.r == rgbTestValues[j].r && ratios[k].colour2.g == rgbTestValues[j].g && ratios[k].colour2.b == rgbTestValues[j].b
-            || 
-            ratios[k].colour1.r == rgbTestValues[j].r && ratios[k].colour1.g == rgbTestValues[j].g && ratios[k].colour1.b == rgbTestValues[j].b &&
-            ratios[k].colour2.r == rgbTestValues[i].r && ratios[k].colour2.g == rgbTestValues[i].g && ratios[k].colour2.b == rgbTestValues[i].b) {
-              skip = true;
-            }
-         }
-      if (!skip){
-
-      const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
-
-      //test every pair of rgb values using their luminance
+        const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
       const ratio = lumOne > lumTwo 
       ? ((lumTwo  + 0.05) / (lumOne + 0.05))
       : ((lumOne + 0.05) / (lumTwo  + 0.05));
+     //alert(ratio);
 
+     for (let k = 0; k < ratios.length; k++){
+      if (ratios[k].colour1.r == rgbTestValues[i].r && ratios[k].colour1.g == rgbTestValues[i].g && ratios[k].colour1.b == rgbTestValues[i].b &&
+        ratios[k].colour2.r == rgbTestValues[j].r && ratios[k].colour2.g == rgbTestValues[j].g && ratios[k].colour2.b == rgbTestValues[j].b
+        || 
+        ratios[k].colour1.r == rgbTestValues[j].r && ratios[k].colour1.g == rgbTestValues[j].g && ratios[k].colour1.b == rgbTestValues[j].b &&
+        ratios[k].colour2.r == rgbTestValues[i].r && ratios[k].colour2.g == rgbTestValues[i].g && ratios[k].colour2.b == rgbTestValues[i].b) {
+          skip = true;
+        }
+     }
+
+     if (!skip){
       const ratioAndColours = {
         colour1: rgbTestValues[i],
         colour2: rgbTestValues[j],
         contrastRatio: ratio,
       };
 
-      //add pair and contrast to array
+      skip = false;
       ratios.push(ratioAndColours);
       }
-
-      skip = false;
     }
     }
   }
-
-  //display contrast and rgb pairs in hex form
   const resultsContainer = document.getElementById("results");
   resultsContainer.innerHTML = "";
   for (let i = 0; i < ratios.length; i += 1){
