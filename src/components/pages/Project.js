@@ -1,33 +1,9 @@
 import "./Project.css"
-import { useEffect, useState } from "react";
-import MagicDropZone from "react-magic-dropzone"
-import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
-//import image from "../../images/maintenance.png"
-
-/*const Project = () => {
-
-return (
-	<img src={image} alt="down for temporary maintenance"/>
-  );
-};
-
-export default Project;*/
-const Project = () => {
-	
-	return (
-		<>
-		<div>
-			<input type="file" id="testImage" accept = "image/*"></input>
-			<canvas id= "testCanvas" width="720" height="480" ></canvas>
-			<button id="testButton">test</button>
-		</div>
-		    <script src="main.js"></script>
-		</>	
-	);
-};
-
-export default Project;
+//import { useEffect, useState } from "react";
+//import MagicDropZone from "react-magic-dropzone"
+//import { useNavigate } from "react-router-dom";
+//import Cookies from "universal-cookie";
+import image from "../../images/maintenance.png"
 
 
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
@@ -253,7 +229,13 @@ const printContrasts = (ratios) =>{
 const main = () => {
   const imgFile = document.getElementById("imgfile");
   const image = new Image();
-  const file = imgFile.files[0];
+  const file = new FileReader();
+  if (imgFile) {
+ 	file = imgFile.files[0];
+  }
+  else {
+	console.log('file is null; imgFile.files[0]');
+  }
   const fileReader = new FileReader();
 
   // Whenever file & image is loaded procced to extract the information from the image
@@ -287,10 +269,37 @@ const main = () => {
     };
     image.src = fileReader.result;
   };
-  fileReader.readAsDataURL(file);
+  try {
+    fileReader.readAsDataURL(file);
+  }
+  catch {
+    console.log('file is null; fileReader.readAsDataURL(file)');
+  }
 };
 
 main();
+
+const Project = () => {
+
+return (
+	<>
+		<body>
+			<script src="./Project.js"></script>
+			<h1>Color palette creator</h1>
+			<form action="#">
+			<input type="file" id="imgfile" />
+			<input type="button" id="btnLoad" value="Load" onclick="main();" />
+			</form>
+			<canvas id="canvas"></canvas>
+			<div id="results"></div>
+		</body>
+		</>	
+  );
+};
+
+export default Project;
+// <img src={image} alt="down for temporary maintenance"/>
+
 
 /* <div className="GuestUIContainer">
         <div className="PosterDragAndDrop">
@@ -320,3 +329,4 @@ main();
         </div>
       </div>
       <ToastContainer autoClose={1000} limit={3} />*/
+
