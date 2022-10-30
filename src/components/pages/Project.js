@@ -16,13 +16,15 @@ export default Project;*/
 const Project = () => {
 	
 	return (
+		<>
 		<div>
-			<input type="file" id="testImage" accept = "image/*">
+			<input type="file" id="testImage" accept = "image/*"></input>
 			<canvas id= "testCanvas" width="720" height="480" ></canvas>
 			<button id="testButton">test</button>
 		</div>
 		    <script src="main.js"></script>
-		);
+		</>	
+	);
 };
 
 export default Project;
