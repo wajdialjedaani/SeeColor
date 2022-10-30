@@ -13,6 +13,20 @@ return (
 };
 
 export default Project;*/
+const Project = () => {
+	
+	return (
+		<div>
+			<input type="file" id="testImage" accept = "image/*">
+			<canvas id= "testCanvas" width="720" height="480" ></canvas>
+			<button id="testButton">test</button>
+		</div>
+		    <script src="main.js"></script>
+		);
+};
+
+export default Project;
+
 
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
