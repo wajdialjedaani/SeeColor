@@ -154,26 +154,29 @@ const contrastTest = (rgbTestValues) =>{
         continue;
       }
 
-      const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
-        //use luminance to calculate contrast
-      const ratio = lumOne > lumTwo 
-      ? ((lumTwo  + 0.05) / (lumOne + 0.05))
-      : ((lumOne + 0.05) / (lumTwo  + 0.05));
-
-        //check if rgb pair is all ready stored
-     for (let k = 0; k < ratios.length; k++){
-      if (ratios[k].colour1.r == rgbTestValues[i].r && ratios[k].colour1.g == rgbTestValues[i].g && ratios[k].colour1.b == rgbTestValues[i].b &&
-        ratios[k].colour2.r == rgbTestValues[j].r && ratios[k].colour2.g == rgbTestValues[j].g && ratios[k].colour2.b == rgbTestValues[j].b
-        || 
-        ratios[k].colour1.r == rgbTestValues[j].r && ratios[k].colour1.g == rgbTestValues[j].g && ratios[k].colour1.b == rgbTestValues[j].b &&
-        ratios[k].colour2.r == rgbTestValues[i].r && ratios[k].colour2.g == rgbTestValues[i].g && ratios[k].colour2.b == rgbTestValues[i].b) {
-          skip = true;
+      //check if pair has all ready been added
+      for (let k = 0; k < ratios.length; k++){
+        if (ratios[k].colour1.r == rgbTestValues[i].r && ratios[k].colour1.g == rgbTestValues[i].g && ratios[k].colour1.b == rgbTestValues[i].b &&
+          ratios[k].colour2.r == rgbTestValues[j].r && ratios[k].colour2.g == rgbTestValues[j].g && ratios[k].colour2.b == rgbTestValues[j].b
+          || 
+          ratios[k].colour1.r == rgbTestValues[j].r && ratios[k].colour1.g == rgbTestValues[j].g && ratios[k].colour1.b == rgbTestValues[j].b &&
+          ratios[k].colour2.r == rgbTestValues[i].r && ratios[k].colour2.g == rgbTestValues[i].g && ratios[k].colour2.b == rgbTestValues[i].b) {
+            skip = true;
+          }
         }
-     }
 
      //if it has been, skip adding again
      //if not, add it
      if (!skip){
+
+      const lumTwo = luminance(rgbTestValues[j].r,rgbTestValues[j].g, rgbTestValues[j].b);
+
+      //use luminance to calculate contrast
+    const ratio = lumOne > lumTwo 
+    ? ((lumTwo  + 0.05) / (lumOne + 0.05))
+    : ((lumOne + 0.05) / (lumTwo  + 0.05));
+
+    //add pair
       const ratioAndColours = {
         colour1: rgbTestValues[i],
         colour2: rgbTestValues[j],
@@ -183,6 +186,7 @@ const contrastTest = (rgbTestValues) =>{
       ratios.push(ratioAndColours);
       }
 
+      //set skip back
       skip = false;
     }
   }
