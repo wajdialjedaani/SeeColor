@@ -188,6 +188,10 @@ const contrastTest = (rgbTestValues) =>{
   }
 
   //display all value pairs and their contrast
+ printContrasts(ratios);
+}
+
+const printContrasts = (ratios) =>{
   const resultsContainer = document.getElementById("results");
   resultsContainer.innerHTML = "";
   for (let i = 0; i < ratios.length; i += 1){
