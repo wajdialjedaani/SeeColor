@@ -5,8 +5,6 @@ import "./Project.css"
 //import Cookies from "universal-cookie";
 import image from "../../images/maintenance.png"
 
-var uploaded = false;
-
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
 const rgbToHex = (pixel) => {
@@ -226,63 +224,48 @@ const printContrasts = (ratios) =>{
 }
 
 
-//from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
-const main = () => {
-  const imgFile = document.getElementById("imgfile");
-  const image = new Image();
-  const file = new FileReader();
-  if (uploaded) {
- 	file = imgFile.files[0];
-  }
-  else {
-	console.log('file is null; imgFile.files[0]');
-  }
-  const fileReader = new FileReader();
-
-  // Whenever file & image is loaded procced to extract the information from the image
-  fileReader.onload = () => {
-    image.onload = () => {
-      uploaded = true;
-      // Set the canvas size to be the same as of the uploaded image
-      const canvas = document.getElementById("canvas");
-      canvas.width = image.width;
-      canvas.height = image.height;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(image, 0, 0);
-
-      /**
-       * getImageData returns an array full of RGBA values
-       * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
-       * (transparency). For array value consistency reasons,
-       * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
-       */
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-      // Convert the image data to RGB values so its much simpler
-      const rgbArray = buildRgb(imageData.data);
-
-      /**
-       * Color quantization
-       * A process that reduces the number of colors used in an image
-       * while trying to visually maintin the original image as much as possible
-       */
-      const quantColors = quantization(rgbArray, 0);
-      contrastTest(quantColors);
-    };
-    image.src = fileReader.result;
-  };
-  if (uploaded) {
-    fileReader.readAsDataURL(file);
-  }
-  catch {
-    console.log('file is null; fileReader.readAsDataURL(file)');
-  }
-};
-
-main();
-
 const Project = () => {
-
+	//from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
+	const main = () => {
+		const imgFile = document.getElementById("imgfile");
+		const image = new Image();
+		const fileReader = new FileReader();
+		const file = new Blob();
+	
+		// Whenever file & image is loaded procced to extract the information from the image
+		fileReader.onload = () => {
+		image.onload = () => {
+			file = imgFile.files[0];
+			// Set the canvas size to be the same as of the uploaded image
+			const canvas = document.getElementById("canvas");
+			canvas.width = image.width;
+			canvas.height = image.height;
+			const ctx = canvas.getContext("2d");
+			ctx.drawImage(image, 0, 0);
+	
+			/**
+			 * getImageData returns an array full of RGBA values
+			 * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
+			 * (transparency). For array value consistency reasons,
+			 * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
+			 */
+			const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+	
+			// Convert the image data to RGB values so its much simpler
+			const rgbArray = buildRgb(imageData.data);
+	
+			/**
+			 * Color quantization
+			 * A process that reduces the number of colors used in an image
+			 * while trying to visually maintin the original image as much as possible
+			 */
+			const quantColors = quantization(rgbArray, 0);
+			contrastTest(quantColors);
+		};
+		image.src = fileReader.result;
+		fileReader.readAsDataURL(file);
+		};
+	};
 return (
 	<>
 		<body>
@@ -290,7 +273,7 @@ return (
 			<h1>Color palette creator</h1>
 			<form action="#">
 			<input type="file" id="imgfile" />
-			<input type="button" id="btnLoad" value="Load" onclick="main();" />
+			<input type="button" id="btnLoad" value="Load" onclick={main} />
 			</form>
 			<canvas id="canvas"></canvas>
 			<div id="results"></div>
