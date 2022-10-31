@@ -5,6 +5,7 @@ import "./Project.css"
 //import Cookies from "universal-cookie";
 import image from "../../images/maintenance.png"
 
+var uploaded = false;
 
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
@@ -230,7 +231,7 @@ const main = () => {
   const imgFile = document.getElementById("imgfile");
   const image = new Image();
   const file = new FileReader();
-  if (imgFile) {
+  if (uploaded) {
  	file = imgFile.files[0];
   }
   else {
@@ -241,6 +242,7 @@ const main = () => {
   // Whenever file & image is loaded procced to extract the information from the image
   fileReader.onload = () => {
     image.onload = () => {
+      uploaded = true;
       // Set the canvas size to be the same as of the uploaded image
       const canvas = document.getElementById("canvas");
       canvas.width = image.width;
@@ -269,7 +271,7 @@ const main = () => {
     };
     image.src = fileReader.result;
   };
-  try {
+  if (uploaded) {
     fileReader.readAsDataURL(file);
   }
   catch {
