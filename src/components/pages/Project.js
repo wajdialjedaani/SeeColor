@@ -13,12 +13,7 @@ const rgbToHex = (pixel) => {
     return hex.length == 1 ? "0" + hex : hex;
   };
 
-  return (
-    "#" +
-    componentToHex(pixel.r) +
-    componentToHex(pixel.g) +
-    componentToHex(pixel.b)
-  ).toUpperCase();
+  return ("#" + componentToHex(pixel.r) + componentToHex(pixel.g) + componentToHex(pixel.b)).toUpperCase();
 };
 
 
