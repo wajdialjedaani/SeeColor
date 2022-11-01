@@ -256,7 +256,7 @@ const Project = () => {
         <div className="canvas">
             <h2>Color Palette Creator:</h2>
             <input type="file" onChange={handleChange} />
-            <img src={file} />
+            <img src={file} className="canvas"/>
         </div>
   
     );
