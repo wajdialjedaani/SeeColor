@@ -1,5 +1,5 @@
 import "./Project.css"
-//import { useEffect, useState } from "react";
+import React, { useState } from "react";
 //import MagicDropZone from "react-magic-dropzone"
 //import { useNavigate } from "react-router-dom";
 //import Cookies from "universal-cookie";
@@ -216,61 +216,50 @@ const printContrasts = (ratios) =>{
 
 
 const Project = () => {
-	//from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
-	const main = () => {
-		const imgFile = document.getElementById("imgfile");
-		const image = new Image();
-		const fileReader = new FileReader();
-		const file = new Blob();
-	
-		// Whenever file & image is loaded procced to extract the information from the image
-		fileReader.onload = () => {
-		image.onload = () => {
-			file = imgFile.files[0];
-			// Set the canvas size to be the same as of the uploaded image
-			const canvas = document.getElementById("canvas");
-			canvas.width = image.width;
-			canvas.height = image.height;
-			const ctx = canvas.getContext("2d");
-			ctx.drawImage(image, 0, 0);
-	
-			/**
-			 * getImageData returns an array full of RGBA values
-			 * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
-			 * (transparency). For array value consistency reasons,
-			 * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
-			 */
-			const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-	
-			// Convert the image data to RGB values so its much simpler
-			const rgbArray = buildRgb(imageData.data);
-	
-			/**
-			 * Color quantization
-			 * A process that reduces the number of colors used in an image
-			 * while trying to visually maintin the original image as much as possible
-			 */
-			const quantColors = quantization(rgbArray, 0);
-			contrastTest(quantColors);
-		};
-		image.src = fileReader.result;
-		fileReader.readAsDataURL(file);
-		};
-	};
-return (
-	<>
-		<body>
-			<script src="./Project.js"></script>
-			<h1>Color palette creator</h1>
-			<form action="#">
-			<input type="file" id="imgfile" />
-			<input type="button" id="btnLoad" value="Load" onclick={main} />
-			</form>
-			<canvas id="canvas"></canvas>
-			<div id="results"></div>
-		</body>
-		</>	
-  );
+  const [file, setFile] = useState();
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+        const image = new Image();
+        const file = e.target.files[0];
+        const fileReader = new FileReader();
+
+        // Set the canvas size to be the same as of the uploaded image
+        const canvas = document.getElementById("canvas");
+        canvas.width = image.width;
+        canvas.height = image.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(image, 0, 0);
+
+        /**
+         * getImageData returns an array full of RGBA values
+         * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
+         * (transparency). For array value consistency reasons,
+         * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
+         */
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        // Convert the image data to RGB values so its much simpler
+        const rgbArray = buildRgb(imageData.data);
+
+        /**
+         * Color quantization
+         * A process that reduces the number of colors used in an image
+         * while trying to visually maintin the original image as much as possible
+         */
+        const quantColors = quantization(rgbArray, 0);
+        contrastTest(quantColors);
+        image.src = fileReader.result;
+        fileReader.readAsDataURL(file);
+    }
+    return (
+        <div className="canvas">
+            <h2>Color Palette Creator:</h2>
+            <input type="file" onChange={handleChange} />
+            <img src={file} />
+        </div>
+  
+    );
 };
 
 export default Project;
