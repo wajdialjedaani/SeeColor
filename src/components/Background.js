@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css';
 import './Background.css';
-import imagebg from '../images/unt-sky.jpeg';
+import imagebg from '../images/blurry-gradient.svg';
 
 function Background() {
     return (

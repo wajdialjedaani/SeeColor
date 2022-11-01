@@ -1,9 +1,9 @@
-import image from "../../images/unt-library.jpeg";
+import image from "../../images/polygon-scatter.svg";
 
 const Reasearch = () => {
 
 	return (
-		<img src={image} alt="unt willis library"/>
+		<img src={image} alt="polygons on a off-white background"/>
 		);
 	};
 	
