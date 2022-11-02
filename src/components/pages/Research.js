@@ -1,4 +1,5 @@
 import image from "../../images/polygon-scatter.svg";
+import React from 'react';
 
 const Reasearch = () => {
 
