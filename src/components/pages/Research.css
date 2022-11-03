@@ -1,6 +1,22 @@
-img {
-    position: -webkit-sticky;
-    position: sticky;
-    width: 350px;
-	top: 0;
+.research-container > h1 {
+    color: #f9f9f9;
+    font-size: 50px;
+    padding: 5%;
 }
+
+.background-container > h3 {
+    color: #f9f9f9;
+    font-size: 50px;
+    padding: 5%;
+}
+
+
+.research-container > p {
+    font-size: 24px;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    color: #f9f9f9;
+    padding-bottom: 3%;
+}
+
