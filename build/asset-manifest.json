@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.100228f3.css",
+    "main.js": "/static/js/main.d2d45aef.js",
+    "static/media/seecolor.png": "/static/media/seecolor.5bfc7026590f8ecfe76f.png",
+    "static/media/maintenance.png": "/static/media/maintenance.9c06b939934fd2e90432.png",
+    "static/media/layered-waves-main.svg": "/static/media/layered-waves-main.2e173d5417410c7b706d4273381a4a19.svg",
+    "static/media/polygon-scatter.svg": "/static/media/polygon-scatter.d0d8a477e2d6642918d4649b5e4aae18.svg",
+    "static/media/blurry-gradient.svg": "/static/media/blurry-gradient.2ca42234bee02cb5df0c5a2886d67bb5.svg",
+    "index.html": "/index.html",
+    "main.100228f3.css.map": "/static/css/main.100228f3.css.map",
+    "main.d2d45aef.js.map": "/static/js/main.d2d45aef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.100228f3.css",
+    "static/js/main.d2d45aef.js"
+  ]
+}

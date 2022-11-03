@@ -214,55 +214,76 @@ const printContrasts = (ratios) =>{
   }
 }
 
+const getDataFromImage = () =>{
+  const imgFile = document.getElementById("imgfile");
+  const image = new Image();
+  const file = imgFile.files[0];
+  const fileReader = new FileReader();
+
+  // Whenever file & image is loaded procced to extract the information from the image
+  fileReader.onload = () => {
+    image.onload = () => {
+      // Set the canvas size to be the same as of the uploaded image
+      const canvas = document.getElementById("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0);
+
+      /**
+       * getImageData returns an array full of RGBA values
+       * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
+       * (transparency). For array value consistency reasons,
+       * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
+       */
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      // Convert the image data to RGB values so its much simpler
+      const rgbArray = buildRgb(imageData.data);
+
+      /**
+       * Color quantization
+       * A process that reduces the number of colors used in an image
+       * while trying to visually maintin the original image as much as possible
+       */
+      const quantColors = quantization(rgbArray, 0);
+      contrastTest(quantColors);
+    };
+    image.src = fileReader.result;
+  };
+  fileReader.readAsDataURL(file);
+}
+
+
 
 const Project = () => {
-  const [file, setFile] = useState();
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
-        const image = new Image();
-        const file = e.target.files[0];
-        const fileReader = new FileReader();
+  /*React.useEffect(() => {
 
-        // Set the canvas size to be the same as of the uploaded image
-        const canvas = document.getElementById("canvas");
-        canvas.width = image.width;
-        canvas.height = image.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(image, 0, 0);
 
-        /**
-         * getImageData returns an array full of RGBA values
-         * each pixel consists of four values: the red value of the colour, the green, the blue and the alpha
-         * (transparency). For array value consistency reasons,
-         * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
-         */
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  }, []);*/
 
-        // Convert the image data to RGB values so its much simpler
-        const rgbArray = buildRgb(imageData.data);
+  return (
+    <div>
+      <h1>Colour Contrast Tester</h1>
+      <form action="#">
+      <input type="file" id="imgfile" />
+      <input type="button" id="btnLoad" value="Load" onClick={getDataFromImage}/>
+      </form>
+      <canvas id="canvas">
+        Your browser does not support the HTML canvas tag.
+      </canvas>
+      <div id="results"></div>
 
-        /**
-         * Color quantization
-         * A process that reduces the number of colors used in an image
-         * while trying to visually maintin the original image as much as possible
-         */
-        const quantColors = quantization(rgbArray, 0);
-        contrastTest(quantColors);
-        image.src = fileReader.result;
-        fileReader.readAsDataURL(file);
-    }
-    return (
-        <div className="canvas">
-            <h2>Color Palette Creator:</h2>
-            <input type="file" onChange={handleChange} />
-            <img src={file} className="canvas"/>
-        </div>
-  
-    );
-};
+    </div>
+  );
+}
 
 export default Project;
+
+
 // <img src={image} alt="down for temporary maintenance"/>
 
 
