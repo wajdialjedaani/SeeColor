@@ -109,3 +109,7 @@ canvas{
 	max-width: calc(100vw/3);
 	height: auto;
 }
+
+#results {
+	width:10vw;
+}
