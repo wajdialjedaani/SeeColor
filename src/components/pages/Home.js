@@ -1,7 +1,8 @@
 import "./Home.css";
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react"; defined but never used
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../images/seecolor.png";
+//import Logo from "../../images/seecolor.png"; defined but never used
 import Cookies from "universal-cookie";
 //import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +14,7 @@ import { Button } from '../Button';
 import { GetStartedButton } from '../GetStartedButton';
 import '../MainSection.css';
 import image from '../../images/layered-waves-main.svg'
-
+/*
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -22,13 +23,16 @@ import {
   createUserWithEmailAndPassword,
   signInAnonymously,
 } from "firebase/auth";
-
+defined but never used
+*/
 export function Home() {
-  const [homePageMode, setHomePageMode] = useState("hero");
+  /*const [homePageMode, setHomePageMode] = useState("hero");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  defined but never used
+  */
   const navigate = useNavigate();
 
   useEffect(() => {

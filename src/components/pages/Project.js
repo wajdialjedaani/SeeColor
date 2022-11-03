@@ -1,9 +1,9 @@
 import "./Project.css"
-import React, { useState } from "react";
+import React from "react";
 //import MagicDropZone from "react-magic-dropzone"
 //import { useNavigate } from "react-router-dom";
 //import Cookies from "universal-cookie";
-import image from "../../images/maintenance.png"
+//import image from "../../images/maintenance.png"
 
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
@@ -318,7 +318,7 @@ const Project = () => {
       <h1>Color Contrast Tester</h1>
       <form action="#">
       <input type="file" id="imgfile" />
-      <input type="button" id="btnLoad" value="Load" onClick={getDataFromImage}/>
+      <input type="button" id="btnLoad" value="Run Tests" onClick={getDataFromImage}/>
       </form>
       <canvas id="canvas">
         Your browser does not support the HTML canvas tag.

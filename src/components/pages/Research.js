@@ -19,7 +19,7 @@ const Reasearch = () => {
 			<p>Anomalous Trichromacy—The ability of anomalous trichromats to distinguish between hues is better than dichromats but still not normal. Red-green anomalous trichromacy is subdivided into protanomaly and deuteranomaly. Both types are inherited in the same way as for red-green dichromacy. The severity can range from mild to extreme. Some persons with the mildest forms may not even realize their color vision is abnormal.</p>
 			<p>A third type of anomalous trichromacy is tritanomaly. This condition is more often acquired than inherited.”</p>
 			<div></div>
-			<h3>In short:</h3>
+			<h3>In Short:</h3>
 			<p>Monochromacy: no colour vision, sees in black and white, often accompanied by other problems, very rare</p>
 			<p>Idea: would prolly check how much value (lightness of a colour) there are between image colours</p>
 			<div></div>

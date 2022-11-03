@@ -7,7 +7,7 @@ import "firebase/auth";
 import "firebase/database";
 import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
-import { query, collection, getDocs, where } from "firebase/firestore";
+//import { query, collection, getDocs, where } from "firebase/firestore"; defined but never used
 
 function handleLogout() {
   localStorage.clear();
@@ -16,8 +16,10 @@ function handleLogout() {
 }
 
 function Dashboard() {
-  const [user, loading, error] = useAuthState(auth);
-  const [name, setName] = useState("");
+  //const [user, loading, error] = useAuthState(auth); error assigned a value but never used
+  const [user, loading] = useAuthState(auth);
+  //const [name, setName] = useState(""); setName defined but never used
+  const [name] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) return;

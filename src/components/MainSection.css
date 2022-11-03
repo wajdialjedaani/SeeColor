@@ -22,7 +22,7 @@ img {
 
 .main-container > h1 {
     color: #fff;
-    font-size: 90px;
+    font-size: 6.5vw;
     margin-top: 80px;
     margin-left: auto;
     text-align: center;
@@ -35,6 +35,6 @@ img {
     justify-content: center;
    /* margin: 0 auto; */
     text-align: center;
-    font-size: 30px;
+    font-size: 2.5vw;
     color: #00853e
 }
