@@ -1,22 +1,26 @@
-.research-container > h1 {
+.research-container {
     color: #f9f9f9;
-    font-size: 50px;
-    padding: 5%;
 }
 
-.background-container > h3 {
-    color: #f9f9f9;
-    font-size: 50px;
+
+.research-container > h1 {
+    font-size: 4vw;
     padding: 5%;
+    text-align: center;
+}
+
+.research-container > h3 {
+    font-size: 3vw;
+    padding: 5%;
+    text-align:center
 }
 
 
 .research-container > p {
-    font-size: 24px;
+    font-size: 1.5vw;
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
-    color: #f9f9f9;
     padding-bottom: 3%;
 }
 

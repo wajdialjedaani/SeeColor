@@ -1,10 +1,10 @@
 import image from "../../images/layered-peaks-dark.svg";
 import React from 'react';
+import './Research.css'
 
 const Reasearch = () => {
-
 	return (
-		<div id="research-container">
+		<div className="research-container">
             <img src = { image } alt="polygons on a off-white background" id="rsrch-img" />
             <h1>Explanation and Overview</h1>
             <p>Monochromacy—Rod monochromats, or complete achromats, are truly “color blind” since they cannot distinguish any hues (e.g., blue, green, yellow and red). They see only different degrees of lightness. For them, the world appears to be shades of gray, black and white. They also have poor visual acuity, aversion to bright light and nystagmus (an involuntary, rapid movement of the eyes).</p>
