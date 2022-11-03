@@ -223,7 +223,27 @@ const printContrasts = (ratios) =>{
     const contrastElement = document.createElement("div");
     const colour1Element = document.createElement("div");
     const colour2Element = document.createElement("div");
+    const WCAGElementAAL = document.createElement("div");
+    const WCAGElementAAS = document.createElement("div");
+    const WCAGElementAAAL = document.createElement("div");
+    const WCAGElementAAAS = document.createElement("div");
     contrastElement.appendChild(document.createTextNode(ratios[i].contrastRatio.toFixed(5)));
+
+    //get results of WCAG tests
+               const resultWCAGAAL = `
+                AA-level large text: ${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
+               const resultWCAGAAS = `
+                AA-level small text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
+               const resultWCAGAAAL = `
+               AAA-level large text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
+               const resultWCAGAAAS = `
+                 AAA-level small text: ${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
+
+
+    WCAGElementAAL.appendChild(document.createTextNode(resultWCAGAAL));
+    WCAGElementAAS.appendChild(document.createTextNode(resultWCAGAAS));
+    WCAGElementAAAL.appendChild(document.createTextNode(resultWCAGAAAL));
+    WCAGElementAAAS.appendChild(document.createTextNode(resultWCAGAAAS));
 
     const hex1 = rgbToHex(ratios[i].colour1);
     const hex2= rgbToHex(ratios[i].colour2);
@@ -233,6 +253,10 @@ const printContrasts = (ratios) =>{
     colour2Element.appendChild(document.createTextNode(hex2));
 
     resultsContainer.appendChild(contrastElement);
+    resultsContainer.appendChild(WCAGElementAAL);
+    resultsContainer.appendChild(WCAGElementAAS);
+    resultsContainer.appendChild(WCAGElementAAAL);
+    resultsContainer.appendChild(WCAGElementAAAS);
     resultsContainer.appendChild(colour1Element);
     resultsContainer.appendChild(colour2Element);
   }
