@@ -267,7 +267,7 @@ const Project = () => {
 
   return (
     <div>
-      <h1>Colour Contrast Tester</h1>
+      <h1>Color Contrast Tester</h1>
       <form action="#">
       <input type="file" id="imgfile" />
       <input type="button" id="btnLoad" value="Load" onClick={getDataFromImage}/>

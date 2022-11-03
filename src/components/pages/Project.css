@@ -104,7 +104,7 @@
 	}
   }
 
-img.canvas{
+canvas{
 	display: block;
 	max-width: calc(100vw/3);
 	height: auto;
