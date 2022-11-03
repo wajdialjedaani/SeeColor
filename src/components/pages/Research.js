@@ -35,6 +35,10 @@ const Reasearch = () => {
 			<p>Deuteranomaly, protanomaly, tritanomaly: less severe forms of above, no need to add categories for these as they are less severe versions of above, and may be more work than we would want, because they all come in a range"</p>
 			<div></div>
             <p>This is our implementation of a web application where all can upload an image and our application will scan it and report how accessible the image is for different types of color-blindess, based on user testing. Our application will give the image a rating for Monochromacy and the three variations of Dichromacy. It will also explain how to improve the ratings for each, and link to background information on colour blindness.</p>
+			<h3>Sources:</h3>
+			<a href="https://chicago.medicine.uic.edu/departments/academic-departments/ophthalmology-visual-sciences/our-department/media-center/eye-facts/color-blindness/">Chicago Medicine UIC</a>
+			<a href="https://www.urmc.rochester.edu/encyclopedia/content.aspx?contenttypeid=134&contentid=526">URMC Rochester</a>
+			<a href="https://www.sunyopt.edu/news/what-it-means-to-be-color-blind-and-what-you-can-do-about-it/">Sunyopt</a>
     	</div>
 		);
 	};

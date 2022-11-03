@@ -24,3 +24,15 @@
     padding-bottom: 3%;
 }
 
+.research-container > a {
+    font-size: 1.5vw;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    padding-bottom: 3%;
+    color: #f9f9f9;
+    text-decoration: underline;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+}
