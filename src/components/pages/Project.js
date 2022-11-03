@@ -135,10 +135,20 @@ const quantization = (rgbValues, depth) => {
   ];
 };
 
+//from https://stackoverflow.com/questions/8837454/sort-array-of-objects-by-single-key-with-date-value
+//sorts array of objects by key
+//modified to go in descending order
+function sortByKey(array, key) {
+  return array.sort(function(a, b) {
+      var x = a[key]; var y = b[key];
+      return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+  });
+}
+
 //test contrast of image
 const contrastTest = (rgbTestValues) =>{
   //stores rgb pairs and their contrast
-  const ratios = [];
+  let ratios = [];
   let skip = false;
   
   //get the luminance of every value pair
@@ -188,14 +198,28 @@ const contrastTest = (rgbTestValues) =>{
     }
   }
 
+  //ratios =  ratios.sort(function(a,b){
+  //  return a.contrastRatio - b.contrastRatio;
+  //})
+
+  ratios = sortByKey(ratios, 'contrastRatio');
+
   //display all value pairs and their contrast
  printContrasts(ratios);
 }
 
+//make new elements for each contrast ratio and hex colour
+//add them to the web page
 const printContrasts = (ratios) =>{
   const resultsContainer = document.getElementById("results");
   resultsContainer.innerHTML = "";
-  for (let i = 0; i < ratios.length; i += 1){
+  
+  //number of contrast ratios and rgb pairs to print
+  //equal to ratios.length for full array
+  //may be made into parametre
+  const numRatiosToPrint = 10;
+
+  for (let i = 0; i < numRatiosToPrint; i += 1){
     const contrastElement = document.createElement("div");
     const colour1Element = document.createElement("div");
     const colour2Element = document.createElement("div");
