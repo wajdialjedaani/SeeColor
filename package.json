@@ -1,6 +1,6 @@
 {
   "name": "seecolor",
-  "version": "1.0.1",
+  "version": "3.1.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",
