@@ -45,6 +45,7 @@
   
   .nav-menu.active:li {
     display: grid;
+    grid-template-rows: repeat(4, auto);
     text-align: center;
     width: 60vw;
     justify-content: center;
@@ -100,6 +101,7 @@
   
     .nav-menu.active {
       background: #242222;
+      grid-template-rows: repeat(4, auto);
       left: 0;
       opacity: 1;
       transition: all 0.5s ease;
