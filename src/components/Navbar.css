@@ -43,7 +43,7 @@
     justify-content: center;
   }
   
-  .nav-menu.active:div {
+  .nav-menu.active:li {
     display: table;
     text-align: center;
     width: 60vw;
@@ -106,7 +106,7 @@
       z-index: 1;
     }
   
-    .nav-menu.active:div {
+    .nav-menu.active:li {
       display: table;
       text-align: center;
       width: 60vw;
