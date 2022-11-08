@@ -19,13 +19,12 @@
   .navbar-logo {
     color: #fff;
     justify-self: start;
-    margin-left: 2vw;
+    margin-left: 20px;
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
     display: flex;
     align-items: center;
-    margin-right: 50vw;
   }
   
   .fa-typo3 {
@@ -74,7 +73,7 @@
     display: none;
   }
   
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 960px) {
     .NavbarItems {
       position: relative;
     }
@@ -117,7 +116,7 @@
       top: 0;
       left: 0;
       transform: translate(25%, 50%);
-
+      margin-right: 300px;
     }
   
     .menu-icon {
@@ -135,10 +134,9 @@
       font-size: 2rem;
     }
   
-    .pancake-container {
-      display: flex;
+    .nav-links-mobile {
+      display: block;
       text-align: center;
-      align-items: center;
       margin: 2rem auto;
       border-radius: 4px;
       width: 80%;
@@ -150,8 +148,8 @@
       border: 1px solid #fff;
       transition: all 0.3s ease-out;
     }
-    
-    .pancake-container:hover {
+  
+    .nav-links-mobile:hover {
       background: #fff;
       color: #242424;
       transition: 250ms;
