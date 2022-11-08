@@ -47,6 +47,7 @@
     display: table;
     text-align: center;
     width: 60vw;
+    justify-content: center;
   }
 
   .nav-item {
