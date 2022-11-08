@@ -44,7 +44,7 @@
   }
   
   .nav-menu.active:li {
-    display: table;
+    display: grid;
     text-align: center;
     width: 60vw;
     justify-content: center;
@@ -53,12 +53,12 @@
 
   .nav-item {
     height: 80px;
-    display: flex;
+    display: grid;
   }
   
   .nav-links {
     color: #fff;
-    display: flex;
+    display: grid;
     align-items: center;
     text-decoration: none;
     padding: 0.5rem 1rem;
@@ -107,7 +107,7 @@
     }
   
     .nav-menu.active:li {
-      display: table;
+      display: grid;
       text-align: center;
       width: 60vw;
       justify-content: center;
@@ -118,7 +118,7 @@
       text-align: center;
       padding: 2rem;
       width: 100%;
-      display: table;
+      display: grid;
     }
   
     .nav-links:hover {
