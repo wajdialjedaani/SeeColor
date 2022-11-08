@@ -43,7 +43,7 @@
     justify-content: center;
   }
   
-  .nav-menu.active {
+  .nav-menu.active:div {
     display: table;
     text-align: center;
     width: 60vw;
