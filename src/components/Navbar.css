@@ -135,7 +135,7 @@
       font-size: 2rem;
     }
   
-    .nav-links-mobile {
+    .pancake-container {
       display: flex;
       text-align: center;
       align-items: center;
@@ -150,8 +150,8 @@
       border: 1px solid #fff;
       transition: all 0.3s ease-out;
     }
-  
-    .nav-links-mobile:hover {
+    
+    .pancake-container:hover {
       background: #fff;
       color: #242424;
       transition: 250ms;
