@@ -106,6 +106,14 @@
       z-index: 1;
     }
   
+    .nav-menu.active:div {
+      display: table;
+      text-align: center;
+      width: 60vw;
+      justify-content: center;
+      list-style-type: disc inside;
+    }
+      
     .nav-links {
       text-align: center;
       padding: 2rem;
