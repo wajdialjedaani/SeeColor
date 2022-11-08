@@ -43,6 +43,12 @@
     justify-content: center;
   }
   
+  .nav-menu.active {
+    display: table;
+    text-align: center;
+    width: 60vw;
+  }
+
   .nav-item {
     height: 80px;
     display: flex;
