@@ -136,7 +136,7 @@
     }
   
     .nav-links-mobile {
-      display: block;
+      display: flex;
       text-align: center;
       align-items: center;
       margin: 2rem auto;
