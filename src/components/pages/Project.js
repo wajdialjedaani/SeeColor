@@ -253,6 +253,8 @@ const contrastTest = (rgbTestValues) =>{
 
   //display all value pairs and their contrast
  printContrasts(ratios);
+ printPD(ratios);
+ printT(ratios);
 }
 
 //decide which tests the colours will display for
@@ -284,22 +286,160 @@ const getColourRange = (hue) =>{
   }
 }
 
+//print protanopia and deuteranopia results
+const printPD = (ratios) =>{
+
+  const pdresultsContainer = document.getElementById("pdresults");
+  pdresultsContainer.innerHTML = "";
+
+  const numRatiosToPrint = ratios.length;
+
+  for (let i = 0; i < numRatiosToPrint; i += 1){
+
+    //get hue of both colour
+    let hue1 = rgb_to_h(ratios[i].colour1.r, ratios[i].colour1.g, ratios[i].colour1.b);
+    let hue2 = rgb_to_h(ratios[i].colour2.r, ratios[i].colour2.g, ratios[i].colour2.b);
+
+    //decide which tests the colours will display for
+    let range1 = getColourRange(hue1);
+    let range2 = getColourRange(hue2);
+
+    if((range1 == 'PD' || range1 == 'PDT') && (range2 == 'PD' || range2 == 'PDT')){
+    }
+    else {
+      continue;
+    }
+
+    //create test result elements
+    const contrastElement = document.createElement("div");
+    const colour1Element = document.createElement("div");
+    const colour2Element = document.createElement("div");
+    const WCAGElementAAL = document.createElement("div");
+    const WCAGElementAAS = document.createElement("div");
+    const WCAGElementAAAL = document.createElement("div");
+    const WCAGElementAAAS = document.createElement("div");
+    contrastElement.appendChild(document.createTextNode(ratios[i].contrastRatio.toFixed(5)));
+
+    //get results of WCAG tests
+               const resultWCAGAAL = `
+                AA-level large text: ${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
+               const resultWCAGAAS = `
+                AA-level small text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
+               const resultWCAGAAAL = `
+               AAA-level large text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
+               const resultWCAGAAAS = `
+                 AAA-level small text: ${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
+
+
+    //display wcag results
+    WCAGElementAAL.appendChild(document.createTextNode(resultWCAGAAL));
+    WCAGElementAAS.appendChild(document.createTextNode(resultWCAGAAS));
+    WCAGElementAAAL.appendChild(document.createTextNode(resultWCAGAAAL));
+    WCAGElementAAAS.appendChild(document.createTextNode(resultWCAGAAAS));
+
+    //display hex colours
+    const hex1 = rgbToHex(ratios[i].colour1);
+    const hex2= rgbToHex(ratios[i].colour2);
+    colour1Element.style.backgroundColor = hex1;
+    colour2Element.style.backgroundColor = hex2;
+    colour1Element.appendChild(document.createTextNode(hex1));
+    colour2Element.appendChild(document.createTextNode(hex2));
+
+
+    
+    pdresultsContainer.appendChild(contrastElement);
+    pdresultsContainer.appendChild(WCAGElementAAL);
+    pdresultsContainer.appendChild(WCAGElementAAS);
+    pdresultsContainer.appendChild(WCAGElementAAAL);
+    pdresultsContainer.appendChild(WCAGElementAAAS);
+    pdresultsContainer.appendChild(colour1Element);
+    pdresultsContainer.appendChild(colour2Element);
+    
+  }
+}
+
+//print the tritanopia results
+const printT = (ratios) =>{
+
+  const tresultsContainer = document.getElementById("tresults");
+  tresultsContainer.innerHTML = "";
+
+  const numRatiosToPrint = ratios.length;
+
+  for (let i = 0; i < numRatiosToPrint; i += 1){
+
+    //get hue of both colours
+    let hue1 = rgb_to_h(ratios[i].colour1.r, ratios[i].colour1.g, ratios[i].colour1.b);
+    let hue2 = rgb_to_h(ratios[i].colour2.r, ratios[i].colour2.g, ratios[i].colour2.b);
+
+    //decide which tests the colours will display for
+    let range1 = getColourRange(hue1);
+    let range2 = getColourRange(hue2);
+
+    if((range1 == 'T' || range1 == 'PDT') && (range2 == 'T' || range2 == 'PDT')){
+    }
+    else {
+      continue;
+    }
+
+    //create test result elements
+    const contrastElement = document.createElement("div");
+    const colour1Element = document.createElement("div");
+    const colour2Element = document.createElement("div");
+    const WCAGElementAAL = document.createElement("div");
+    const WCAGElementAAS = document.createElement("div");
+    const WCAGElementAAAL = document.createElement("div");
+    const WCAGElementAAAS = document.createElement("div");
+    contrastElement.appendChild(document.createTextNode(ratios[i].contrastRatio.toFixed(5)));
+
+    //get results of WCAG tests
+               const resultWCAGAAL = `
+                AA-level large text: ${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
+               const resultWCAGAAS = `
+                AA-level small text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
+               const resultWCAGAAAL = `
+               AAA-level large text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
+               const resultWCAGAAAS = `
+                 AAA-level small text: ${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
+
+
+    //display wcag results
+    WCAGElementAAL.appendChild(document.createTextNode(resultWCAGAAL));
+    WCAGElementAAS.appendChild(document.createTextNode(resultWCAGAAS));
+    WCAGElementAAAL.appendChild(document.createTextNode(resultWCAGAAAL));
+    WCAGElementAAAS.appendChild(document.createTextNode(resultWCAGAAAS));
+
+    //display hex colours
+    const hex1 = rgbToHex(ratios[i].colour1);
+    const hex2= rgbToHex(ratios[i].colour2);
+    colour1Element.style.backgroundColor = hex1;
+    colour2Element.style.backgroundColor = hex2;
+    colour1Element.appendChild(document.createTextNode(hex1));
+    colour2Element.appendChild(document.createTextNode(hex2));
+
+    
+      tresultsContainer.appendChild(contrastElement);
+      tresultsContainer.appendChild(WCAGElementAAL);
+      tresultsContainer.appendChild(WCAGElementAAS);
+      tresultsContainer.appendChild(WCAGElementAAAL);
+      tresultsContainer.appendChild(WCAGElementAAAS);
+      tresultsContainer.appendChild(colour1Element);
+      tresultsContainer.appendChild(colour2Element);
+  }
+
+}
+
 //make new elements for each contrast ratio and hex colour
 //add them to the web page
 const printContrasts = (ratios) =>{
   const mresultsContainer = document.getElementById("mresults");
   mresultsContainer.innerHTML = "";
 
-  const pdresultsContainer = document.getElementById("pdresults");
-  mresultsContainer.innerHTML = "";
-
-  const tresultsContainer = document.getElementById("tresults");
-  mresultsContainer.innerHTML = "";
   
   //number of contrast ratios and rgb pairs to print
   //equal to ratios.length for full array
   //may be made into parametre
-  const numRatiosToPrint = ratios.length;
+  const numRatiosToPrint = 10;
 
   for (let i = 0; i < numRatiosToPrint; i += 1){
 
@@ -347,33 +487,13 @@ const printContrasts = (ratios) =>{
     colour2Element.appendChild(document.createTextNode(hex2));
 
     //add everything to containers
-    mresultsContainer.appendChild(contrastElement);
-    mresultsContainer.appendChild(WCAGElementAAL);
-    mresultsContainer.appendChild(WCAGElementAAS);
-    mresultsContainer.appendChild(WCAGElementAAAL);
-    mresultsContainer.appendChild(WCAGElementAAAS);
-    mresultsContainer.appendChild(colour1Element);
-    mresultsContainer.appendChild(colour2Element);
-
-    if((range1 == 'PD' || range1 == 'PDT') && (range2 == 'PD' || range2 == 'PDT')){
-    pdresultsContainer.appendChild(contrastElement);
-    pdresultsContainer.appendChild(WCAGElementAAL);
-    pdresultsContainer.appendChild(WCAGElementAAS);
-    pdresultsContainer.appendChild(WCAGElementAAAL);
-    pdresultsContainer.appendChild(WCAGElementAAAS);
-    pdresultsContainer.appendChild(colour1Element);
-    pdresultsContainer.appendChild(colour2Element);
-    }
-
-    if((range1 == 'T' || range1 == 'PDT') && (range2 == 'T' || range2 == 'PDT')){
-      tresultsContainer.appendChild(contrastElement);
-      tresultsContainer.appendChild(WCAGElementAAL);
-      tresultsContainer.appendChild(WCAGElementAAS);
-      tresultsContainer.appendChild(WCAGElementAAAL);
-      tresultsContainer.appendChild(WCAGElementAAAS);
-      tresultsContainer.appendChild(colour1Element);
-      tresultsContainer.appendChild(colour2Element);
-      }
+      mresultsContainer.appendChild(contrastElement);
+      mresultsContainer.appendChild(WCAGElementAAL);
+      mresultsContainer.appendChild(WCAGElementAAS);
+      mresultsContainer.appendChild(WCAGElementAAAL);
+      mresultsContainer.appendChild(WCAGElementAAAS);
+      mresultsContainer.appendChild(colour1Element);
+      mresultsContainer.appendChild(colour2Element);
   }
 }
 
@@ -503,4 +623,3 @@ export default Project;
         </div>
       </div>
       <ToastContainer autoClose={1000} limit={3} />*/
-
