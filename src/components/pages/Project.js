@@ -48,8 +48,19 @@ function rgb_to_h(r , g , b) {
   // if cmax equal b then compute h
   else if (cmax == b)
       h = (60 * ((r - g) / diff) + 240) % 360;
+
+   // if cmax equal zero
+   if (cmax == 0)
+    s = 0;
+  else
+     s = (diff / cmax) * 100;
+
+  const hs = {
+    hue: h,
+    sat: s,
+  };
  
-   return h;
+   return hs;
 }
 
 
@@ -246,15 +257,19 @@ const contrastTest = (rgbTestValues) =>{
 
 //give colour a name based on its position on the hue wheel
 const getColourRange = (hue) =>{
+
+  if(hue.sat < 15){
+    return 'NA';
+  }
   
   //ranges might need adjusted
-  if(hue > 349 || hue < 11 ){
+  if(hue.hue > 349 || hue.hue < 11 ){
     return 'red';
   }
-  else if(hue < 141 && hue > 80){
+  else if(hue.hue < 170 && hue.hue > 80){
     return 'green';
   }
-  else if (hue > 50 && hue < 61){
+  else if (hue.hue > 40 && hue.hue < 81){
     return 'yellow';
   }
   else {
