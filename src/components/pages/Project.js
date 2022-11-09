@@ -294,6 +294,8 @@ const printPD = (ratios) =>{
 
   const numRatiosToPrint = ratios.length;
 
+  let foundNone = true;
+
   for (let i = 0; i < numRatiosToPrint; i += 1){
 
     //get hue of both colour
@@ -305,6 +307,7 @@ const printPD = (ratios) =>{
     let range2 = getColourRange(hue2);
 
     if((range1 == 'PD' || range1 == 'PDT') && (range2 == 'PD' || range2 == 'PDT')){
+      foundNone = false;
     }
     else {
       continue;
@@ -356,6 +359,13 @@ const printPD = (ratios) =>{
     pdresultsContainer.appendChild(colour2Element);
     
   }
+
+  //write na if there are no applicable colours
+  if (foundNone == true){
+    const naElement = document.createElement("div");
+    naElement.appendChild(document.createTextNode("NA"));
+    pdresultsContainer.appendChild(naElement);
+  }
 }
 
 //print the tritanopia results
@@ -365,6 +375,8 @@ const printT = (ratios) =>{
   tresultsContainer.innerHTML = "";
 
   const numRatiosToPrint = ratios.length;
+
+  let foundNone = true;
 
   for (let i = 0; i < numRatiosToPrint; i += 1){
 
@@ -377,6 +389,7 @@ const printT = (ratios) =>{
     let range2 = getColourRange(hue2);
 
     if((range1 == 'T' || range1 == 'PDT') && (range2 == 'T' || range2 == 'PDT')){
+      foundNone = false;
     }
     else {
       continue;
@@ -425,6 +438,13 @@ const printT = (ratios) =>{
       tresultsContainer.appendChild(WCAGElementAAAS);
       tresultsContainer.appendChild(colour1Element);
       tresultsContainer.appendChild(colour2Element);
+  }
+
+  //write na if there are no applicable colours
+  if (foundNone == true){
+    const naElement = document.createElement("div");
+    naElement.appendChild(document.createTextNode("NA"));
+    tresultsContainer.appendChild(naElement);
   }
 
 }
