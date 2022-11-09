@@ -45,7 +45,31 @@ input[type="file"] {
     justify-content: flex-start;
   }
   
-  .Results {
+  .MResults {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: max-content;
+	background-color: #F9f9f9;
+	border-radius: 15px;
+	box-shadow: 4px 4px 10px rgb(90, 90, 90);
+	overflow: hidden;
+	align-items: center;
+  }
+
+  .PDResults {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: max-content;
+	background-color: #F9f9f9;
+	border-radius: 15px;
+	box-shadow: 4px 4px 10px rgb(90, 90, 90);
+	overflow: hidden;
+	align-items: center;
+  }
+
+  .TResults {
 	display: flex;
 	flex-direction: column;
 	width: 50%;

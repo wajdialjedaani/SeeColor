@@ -255,7 +255,7 @@ const contrastTest = (rgbTestValues) =>{
  printContrasts(ratios);
 }
 
-//give colour a name based on its position on the hue wheel
+//decide which tests the colours will display for
 const getColourRange = (hue) =>{
 
   if(hue.sat < 15){
@@ -263,14 +263,21 @@ const getColourRange = (hue) =>{
   }
   
   //ranges might need adjusted
+  //red
   if(hue.hue > 349 || hue.hue < 11 ){
-    return 'red';
+    return 'PD';
   }
+  //green
   else if(hue.hue < 170 && hue.hue > 80){
-    return 'green';
+    return 'PD';
   }
+  //yellow
   else if (hue.hue > 40 && hue.hue < 81){
-    return 'yellow';
+    return 'PDT';
+  }
+  //blue
+  else if(hue.hue > 169 && hue.hue < 281){
+    return 'T';
   }
   else {
     return 'NA';
@@ -280,8 +287,14 @@ const getColourRange = (hue) =>{
 //make new elements for each contrast ratio and hex colour
 //add them to the web page
 const printContrasts = (ratios) =>{
-  const resultsContainer = document.getElementById("results");
-  resultsContainer.innerHTML = "";
+  const mresultsContainer = document.getElementById("mresults");
+  mresultsContainer.innerHTML = "";
+
+  const pdresultsContainer = document.getElementById("pdresults");
+  mresultsContainer.innerHTML = "";
+
+  const tresultsContainer = document.getElementById("tresults");
+  mresultsContainer.innerHTML = "";
   
   //number of contrast ratios and rgb pairs to print
   //equal to ratios.length for full array
@@ -290,13 +303,15 @@ const printContrasts = (ratios) =>{
 
   for (let i = 0; i < numRatiosToPrint; i += 1){
 
+    //get hue of both colour
     let hue1 = rgb_to_h(ratios[i].colour1.r, ratios[i].colour1.g, ratios[i].colour1.b);
     let hue2 = rgb_to_h(ratios[i].colour2.r, ratios[i].colour2.g, ratios[i].colour2.b);
 
+    //decide which tests the colours will display for
     let range1 = getColourRange(hue1);
     let range2 = getColourRange(hue2);
 
-    if((range1 == 'red' || range1 == 'green' || range1 == 'yellow') && (range2 == 'red' || range2 == 'green' || range2 == 'yellow')){
+    //create test result elements
     const contrastElement = document.createElement("div");
     const colour1Element = document.createElement("div");
     const colour2Element = document.createElement("div");
@@ -317,11 +332,13 @@ const printContrasts = (ratios) =>{
                  AAA-level small text: ${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
 
 
+    //display wcag results
     WCAGElementAAL.appendChild(document.createTextNode(resultWCAGAAL));
     WCAGElementAAS.appendChild(document.createTextNode(resultWCAGAAS));
     WCAGElementAAAL.appendChild(document.createTextNode(resultWCAGAAAL));
     WCAGElementAAAS.appendChild(document.createTextNode(resultWCAGAAAS));
 
+    //display hex colours
     const hex1 = rgbToHex(ratios[i].colour1);
     const hex2= rgbToHex(ratios[i].colour2);
     colour1Element.style.backgroundColor = hex1;
@@ -329,14 +346,34 @@ const printContrasts = (ratios) =>{
     colour1Element.appendChild(document.createTextNode(hex1));
     colour2Element.appendChild(document.createTextNode(hex2));
 
-    resultsContainer.appendChild(contrastElement);
-    resultsContainer.appendChild(WCAGElementAAL);
-    resultsContainer.appendChild(WCAGElementAAS);
-    resultsContainer.appendChild(WCAGElementAAAL);
-    resultsContainer.appendChild(WCAGElementAAAS);
-    resultsContainer.appendChild(colour1Element);
-    resultsContainer.appendChild(colour2Element);
+    //add everything to containers
+    mresultsContainer.appendChild(contrastElement);
+    mresultsContainer.appendChild(WCAGElementAAL);
+    mresultsContainer.appendChild(WCAGElementAAS);
+    mresultsContainer.appendChild(WCAGElementAAAL);
+    mresultsContainer.appendChild(WCAGElementAAAS);
+    mresultsContainer.appendChild(colour1Element);
+    mresultsContainer.appendChild(colour2Element);
+
+    if((range1 == 'PD' || range1 == 'PDT') && (range2 == 'PD' || range2 == 'PDT')){
+    pdresultsContainer.appendChild(contrastElement);
+    pdresultsContainer.appendChild(WCAGElementAAL);
+    pdresultsContainer.appendChild(WCAGElementAAS);
+    pdresultsContainer.appendChild(WCAGElementAAAL);
+    pdresultsContainer.appendChild(WCAGElementAAAS);
+    pdresultsContainer.appendChild(colour1Element);
+    pdresultsContainer.appendChild(colour2Element);
     }
+
+    if((range1 == 'T' || range1 == 'PDT') && (range2 == 'T' || range2 == 'PDT')){
+      tresultsContainer.appendChild(contrastElement);
+      tresultsContainer.appendChild(WCAGElementAAL);
+      tresultsContainer.appendChild(WCAGElementAAS);
+      tresultsContainer.appendChild(WCAGElementAAAL);
+      tresultsContainer.appendChild(WCAGElementAAAS);
+      tresultsContainer.appendChild(colour1Element);
+      tresultsContainer.appendChild(colour2Element);
+      }
   }
 }
 
@@ -406,11 +443,23 @@ const Project = () => {
               Your browser does not support the HTML canvas tag.
             </canvas>
         </div>
-        <div className="Results">
-          <h2 className="SectionHeading">Results</h2>
-          <div style={{ width: "95%" }}>
+        <div className="MResults">
+          <h2 className="SectionHeading">Monochromacy Results</h2>
+          <div style={{ width: "90%" }}>
           </div>
-          <div id="results"></div>
+          <div id="mresults"></div>
+        </div>
+        <div className="PDResults">
+          <h2 className="SectionHeading">Protanopia/Deuteranopia Results</h2>
+          <div style={{ width: "90%" }}>
+          </div>
+          <div id="pdresults"></div>
+        </div>
+        <div className="TResults">
+          <h2 className="SectionHeading">Tritanopia Results</h2>
+          <div style={{ width: "90%" }}>
+          </div>
+          <div id="tresults"></div>
         </div>
       </div>
       <form action="#">
