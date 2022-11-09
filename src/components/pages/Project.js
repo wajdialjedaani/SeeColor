@@ -1,9 +1,10 @@
 import "./Project.css"
-import React from "react";
-//import MagicDropZone from "react-magic-dropzone"
+import React, { useState } from "react";
+import MagicDropZone from "react-magic-dropzone"
+import { toast } from "react-toastify";
 //import { useNavigate } from "react-router-dom";
 //import Cookies from "universal-cookie";
-//import image from "../../images/maintenance.png"
+import image from "../../images/low-poly-grid.svg"
 
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
@@ -262,7 +263,7 @@ const printContrasts = (ratios) =>{
   }
 }
 
-const getDataFromImage = () =>{
+const getDataFromImage = () => {
   const imgFile = document.getElementById("imgfile");
   const image = new Image();
   const file = imgFile.files[0];
@@ -303,7 +304,6 @@ const getDataFromImage = () =>{
 }
 
 
-
 const Project = () => {
   /*React.useEffect(() => {
 
@@ -312,18 +312,32 @@ const Project = () => {
     var ctx = c.getContext("2d");
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   }, []);*/
+  // drag drop file component
+  // drag state
 
   return (
     <div>
-      <h1>Color Contrast Tester</h1>
+    <img src={image} alt="poly-grid" id="background"/>
+      <div className="UploadUIContainer">
+        <div className="PosterDragAndDrop">
+          <h2 className="SectionHeading">Color Contrast Tester</h2>
+            <label class="file" >
+              <input type="file" id="imgfile" onChange={getDataFromImage}/>
+              Click to Upload an Image
+            </label>
+            <canvas id="canvas">
+              Your browser does not support the HTML canvas tag.
+            </canvas>
+        </div>
+        <div className="Results">
+          <h2 className="SectionHeading">Results</h2>
+          <div style={{ width: "95%" }}>
+          </div>
+          <div id="results"></div>
+        </div>
+      </div>
       <form action="#">
-      <input type="file" id="imgfile" />
-      <input type="button" id="btnLoad" value="Run Tests" onClick={getDataFromImage}/>
       </form>
-      <canvas id="canvas">
-        Your browser does not support the HTML canvas tag.
-      </canvas>
-      <div id="results"></div>
 
     </div>
   );

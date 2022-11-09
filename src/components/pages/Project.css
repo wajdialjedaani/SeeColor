@@ -1,28 +1,56 @@
-.GuestUIContainer {
+#background {
+	margin-top: -5em;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file {
+	font-size: 150%;
+	justify-content: space-around;
+}
+
+.file {
+    display: flex;
+	flex-direction: column;
+	margin-top: 1em;
+	height: 4vw;
+	width: 60%;
+	background-color: #F9f9f9;
+	border-radius: 15px;
+	box-shadow: 4px 4px 10px rgb(90, 90, 90);
+	overflow: hidden;
+	align-items: center;
+}
+
+.UploadUIContainer {
 	display: flex;
 	flex-direction: row;
 	margin-top: 5em;
-	height: 85vh;
+	height: 40vh;
 	justify-content: space-around;
   }
   
   .PosterDragAndDrop {
 	display: flex;
-	flex-direction: column;
-	width: 40%;
-	background-color: #fff;
-	border-radius: 15px;
-	box-shadow: 4px 4px 10px rgb(90, 90, 90);
-	overflow: hidden;
-	align-items: center;
+    flex-direction: column;
+	height: max-content;
+    width: 40%;
+    background-color: #F9f9f9;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgb(90 90 90);
+    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
   }
   
-  .PosterRatingContainer {
+  .Results {
 	display: flex;
 	flex-direction: column;
 	width: 50%;
 	height: max-content;
-	background-color: #fff;
+	background-color: #F9f9f9;
 	border-radius: 15px;
 	box-shadow: 4px 4px 10px rgb(90, 90, 90);
 	overflow: hidden;
@@ -59,15 +87,17 @@
   
   .DragAndDropArea:hover {
 	background-color: #33333387;
-	border: 1px dashed #b90504;
+	border: 1px dashed #00853e;
 	content-visibility: inherit;
   }
   
-  .PosterImg {
-	width: 100%;
+  .magicFile {
+	width: 30vw;
 	height: 100%;
 	object-fit: contain;
 	overflow: hidden;
+	z-index: 1;
+	position: absolute;
   }
   
   .TimeToCalculate {
@@ -98,7 +128,7 @@
 	  height: 100px;
 	}
   
-	.PosterRatingContainer {
+	.Results {
 	  width: 95%;
 	  margin-top: 2em;
 	}
@@ -108,8 +138,12 @@ canvas{
 	display: block;
 	max-width: calc(100vw/3);
 	height: auto;
+    padding-bottom: 3vw;
+	padding-top: 3vw;
 }
 
 #results {
-	width:10vw;
+	width:40vw;
+    column-count: 3;
+    padding-bottom: 3vh;
 }
