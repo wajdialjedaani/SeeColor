@@ -73,7 +73,6 @@ function Navbar() {
 export default Navbar
 
 /* LOGIN REMOVED:
-
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li className='nav-item'>
                         <Link to='/project' className='nav-links' onClick={Home.handleGuestModeSubmit}>
