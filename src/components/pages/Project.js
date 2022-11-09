@@ -17,6 +17,41 @@ const rgbToHex = (pixel) => {
   return ("#" + componentToHex(pixel.r) + componentToHex(pixel.g) + componentToHex(pixel.b)).toUpperCase();
 };
 
+//from https://www.geeksforgeeks.org/program-change-rgb-color-model-hsv-color-model/
+//returns hue value from an rgb value
+function rgb_to_h(r , g , b) {
+ 
+  // R, G, B values are divided by 255
+  // to change the range from 0..255 to 0..1
+  r = r / 255.0;
+  g = g / 255.0;
+  b = b / 255.0;
+
+  // h, s, v = hue, saturation, value
+  var cmax = Math.max(r, Math.max(g, b)); // maximum of r, g, b
+  var cmin = Math.min(r, Math.min(g, b)); // minimum of r, g, b
+  var diff = cmax - cmin; // diff of cmax and cmin.
+  var h = -1, s = -1;
+
+  // if cmax and cmax are equal then h = 0
+  if (cmax == cmin)
+      h = 0;
+
+  // if cmax equal r then compute h
+  else if (cmax == r)
+      h = (60 * ((g - b) / diff) + 360) % 360;
+
+  // if cmax equal g then compute h
+  else if (cmax == g)
+      h = (60 * ((b - r) / diff) + 120) % 360;
+
+  // if cmax equal b then compute h
+  else if (cmax == b)
+      h = (60 * ((r - g) / diff) + 240) % 360;
+ 
+   return h;
+}
+
 
 //from https://dev.to/alvaromontoro/building-your-own-color-contrast-checker-4j7o
 //return luminance of an rgb value
@@ -209,6 +244,24 @@ const contrastTest = (rgbTestValues) =>{
  printContrasts(ratios);
 }
 
+//give colour a name based on its position on the hue wheel
+const getColourRange = (hue) =>{
+  
+  //ranges might need adjusted
+  if(hue > 349 || hue < 11 ){
+    return 'red';
+  }
+  else if(hue < 141 && hue > 80){
+    return 'green';
+  }
+  else if (hue > 50 && hue < 61){
+    return 'yellow';
+  }
+  else {
+    return 'NA';
+  }
+}
+
 //make new elements for each contrast ratio and hex colour
 //add them to the web page
 const printContrasts = (ratios) =>{
@@ -218,9 +271,17 @@ const printContrasts = (ratios) =>{
   //number of contrast ratios and rgb pairs to print
   //equal to ratios.length for full array
   //may be made into parametre
-  const numRatiosToPrint = 10;
+  const numRatiosToPrint = ratios.length;
 
   for (let i = 0; i < numRatiosToPrint; i += 1){
+
+    let hue1 = rgb_to_h(ratios[i].colour1.r, ratios[i].colour1.g, ratios[i].colour1.b);
+    let hue2 = rgb_to_h(ratios[i].colour2.r, ratios[i].colour2.g, ratios[i].colour2.b);
+
+    let range1 = getColourRange(hue1);
+    let range2 = getColourRange(hue2);
+
+    if((range1 == 'red' || range1 == 'green' || range1 == 'yellow') && (range2 == 'red' || range2 == 'green' || range2 == 'yellow')){
     const contrastElement = document.createElement("div");
     const colour1Element = document.createElement("div");
     const colour2Element = document.createElement("div");
@@ -260,6 +321,7 @@ const printContrasts = (ratios) =>{
     resultsContainer.appendChild(WCAGElementAAAS);
     resultsContainer.appendChild(colour1Element);
     resultsContainer.appendChild(colour2Element);
+    }
   }
 }
 
