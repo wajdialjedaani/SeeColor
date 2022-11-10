@@ -111,6 +111,12 @@
       font-size: 3vw;
     }
       
+      
+    .nav-menu.active:ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .nav-links {
       text-align: center;
       padding: 2rem;
