@@ -17,6 +17,7 @@
     "react-magic-dropzone": "^1.0.1",
     "react-router-dom": "^6.4.1",
     "react-scripts": "^5.0.1",
+    "react-spinners": "^0.13.6",
     "react-toastify": "^9.0.8",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4"

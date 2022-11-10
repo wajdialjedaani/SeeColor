@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 //import { useNavigate } from "react-router-dom";
 //import Cookies from "universal-cookie";
 import image from "../../images/low-poly-grid.svg"
+import { ClipLoader } from "react-spinners";
+import { CenterFocusStrong } from "@mui/icons-material";
 
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
@@ -251,6 +253,10 @@ const contrastTest = (rgbTestValues) =>{
 
   ratios = sortByKey(ratios, 'contrastRatio');
 
+  document.getElementsByClassName('Loader')[0].style.display = 'none';
+  document.getElementsByClassName('MResults')[0].style.display = 'block';
+  document.getElementsByClassName('PDResults')[0].style.display = 'block';
+  document.getElementsByClassName('TResults')[0].style.display = 'block';
   //display all value pairs and their contrast
  printContrasts(ratios);
  printPD(ratios);
@@ -559,16 +565,12 @@ const getDataFromImage = () => {
 
 
 const Project = () => {
-  /*React.useEffect(() => {
-
-
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  }, []);*/
-  // drag drop file component
-  // drag state
-
+  const showLoader = event => {
+    document.getElementsByClassName('Loader')[0].style.display = 'flex';
+    document.getElementsByClassName('MResults')[0].style.display = 'none';
+    document.getElementsByClassName('PDResults')[0].style.display = 'none';
+    document.getElementsByClassName('TResults')[0].style.display = 'none';
+  };
   return (
     <div>
     <img src={image} alt="poly-grid" id="background"/>
@@ -576,7 +578,7 @@ const Project = () => {
         <div className="PosterDragAndDrop">
           <h2 className="SectionHeading">Color Contrast Tester</h2>
             <label class="file" >
-              <input type="file" id="imgfile" onChange={getDataFromImage}/>
+              <input type="file" id="imgfile" onChange={getDataFromImage} onClick={showLoader}/>
               Click to Upload an Image
             </label>
             <canvas id="canvas">
@@ -585,6 +587,14 @@ const Project = () => {
         </div>
         <div className="Results">
           <h2 className="SectionHeading">Results</h2>
+          <div className="Loader">
+            <ClipLoader
+                color="#00853e"
+                size={100}
+                loading='false'
+                cssOverride={{display: "flex"}}
+            />
+            </div>
           <div id="results">
             <div className="MResults">
               <h3 className="SectionHeading">Monochromacy Results</h3>

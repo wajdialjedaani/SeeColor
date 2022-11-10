@@ -53,10 +53,13 @@ input[type="file"] {
 	border-radius: 1vw;
 	box-shadow: 4px 4px 10px rgb(90, 90, 90);
 	overflow: hidden;
-	align-items:flex-start;
+	align-items:center;
 	justify-content: left;
   }
-  
+  .Results > span {
+	z-index: 3;
+	border-width: 0.5vw!important;
+  }
   .MResults {
 	display: flex;
     flex-direction: column;
@@ -70,6 +73,7 @@ input[type="file"] {
     align-items: center;
     margin: 1vw;
     font-size: 1vw;
+	display: none;
   }
 
   .PDResults {
@@ -85,6 +89,7 @@ input[type="file"] {
     align-items: center;
     margin: 1vw;
     font-size: 1vw;
+	display: none
   }
 
   .TResults {
@@ -100,6 +105,7 @@ input[type="file"] {
     align-items: center;
     margin: 1vw;
     font-size: 1vw;
+	display: none
   }
   
   .SectionHeading {
@@ -235,4 +241,10 @@ canvas{
     align-content: center;
     justify-content: center;
     align-items: flex-start;
+}
+
+.Loader {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
