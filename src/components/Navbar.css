@@ -84,7 +84,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      height: 90vh;
+      height: 100vh;
       position: absolute;
       top: 80px;
       left: -100%;
@@ -105,12 +105,24 @@
     .nav-menu.active {
       text-align: center;
       row-gap: 2vw;
-      width: 40vw;
+      max-width: 100vw;
+      max-height: 100vh;
+      margin: 0 auto;
       justify-content: center;
       list-style-type: disc inside;
       font-size: 3vw;
     }
-      
+    
+    .nav-menu.active:ul:li {
+      justify-content: center;
+      align-item: center;
+    }
+     
+    .nav-menu.active:ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .nav-links {
       text-align: center;
       padding: 2rem;
