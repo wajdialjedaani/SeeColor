@@ -6,11 +6,12 @@
     position: sticky;
     top: 0;
     z-index: 9;
+    justify-content: space-evenly;
   }
   
   .navbar-container {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     height: 80px;
     max-width: 100%;
@@ -35,6 +36,7 @@
   
   .nav-menu {
     display: grid;
+    padding-right: 5%;
     grid-template-columns: repeat(4, auto);
     grid-gap: 2vw;
     list-style: none;
@@ -73,7 +75,7 @@
     display: none;
   }
   
-  @media screen and (max-width: 1650px) {
+  @media screen and (max-width: 1400px) {
     .NavbarItems {
       position: relative;
     }
@@ -101,12 +103,12 @@
     }
   
     .nav-menu.active {
-      display: grid;
       text-align: center;
       row-gap: 2vw;
-      width: 60vw;
+      width: 40vw;
       justify-content: center;
       list-style-type: disc inside;
+      font-size: 3vw;
     }
       
     .nav-links {
@@ -134,7 +136,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      transform: translate(-100%, 60%);
+      transform: translate(-100%, 59%);
       font-size: 1.8rem;
       cursor: pointer;
     }
