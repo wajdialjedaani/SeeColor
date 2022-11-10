@@ -33,23 +33,23 @@ function Navbar() {
                 <div className='menu-icon' onClick={handleClick}>
                     <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                 </div>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item1'>
+                <ul className={click ? 'nav-menu active' : 'nav-menu'} style='max-height:1080px'>
+                    <li className='nav-item1' style='justify-content:center align-item:center'>
                         <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                             Home
                         </Link>
                     </li>
-                    <li className='nav-item2'>
+                    <li className='nav-item2' style='justify-content:center align-item:center'>
                         <Link to='/project-background' className='nav-links' onClick={closeMobileMenu}>
                             Background
                         </Link>
                     </li>
-                    <li className='nav-item3'>
+                    <li className='nav-item3' style='justify-content:center align-item:center'>
                         <Link to='/project' className='nav-links' onClick={closeMobileMenu}>
                             Project
                         </Link>
                     </li>
-                    <li className='nav-item4'>
+                    <li className='nav-item4' style='justify-content:center align-item:center'>
                         <Link to='/research-links' className='nav-links' onClick={closeMobileMenu}>
                             Research Links
                         </Link>
