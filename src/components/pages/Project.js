@@ -583,14 +583,19 @@ const Project = () => {
               Your browser does not support the HTML canvas tag.
             </canvas>
         </div>
-        <div className="MResults">
+        <div className="Results">
+          <h2 className="SectionHeading">Results</h2>
+          <div style={{ width: "90%" }}>
+          </div>
+          <div className="MResults">
           <h2 className="SectionHeading">Monochromacy Results</h2>
           <div style={{ width: "90%" }}>
           </div>
           <div id="mresults"></div>
         </div>
         <div className="PDResults">
-          <h2 className="SectionHeading">Protanopia/Deuteranopia Results</h2>
+          <h2 className="SectionHeading">Protanopia
+          /Deuteranopia Results</h2>
           <div style={{ width: "90%" }}>
           </div>
           <div id="pdresults"></div>
@@ -600,6 +605,8 @@ const Project = () => {
           <div style={{ width: "90%" }}>
           </div>
           <div id="tresults"></div>
+        </div>
+          <div id="results"></div>
         </div>
       </div>
       <form action="#">

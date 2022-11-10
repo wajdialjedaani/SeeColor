@@ -44,46 +44,61 @@ input[type="file"] {
     align-items: center;
     justify-content: flex-start;
   }
+  .Results {
+	display: flex;
+	flex-direction: row;
+	width: 55%;
+	height: max-content;
+	background-color: #F9f9f9;
+	border-radius: 1vw;
+	box-shadow: 4px 4px 10px rgb(90, 90, 90);
+	overflow: hidden;
+	align-items:flex-start;
+	justify-content: left;
+  }
   
   .MResults {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 150%;
 	height: max-content;
 	background-color: #F9f9f9;
-	border-radius: 15px;
+	border-radius: 2vw;
 	box-shadow: 4px 4px 10px rgb(90, 90, 90);
-	overflow: hidden;
+	overflow: visible;
 	align-items: center;
+	margin: 1vw;
   }
 
   .PDResults {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 150%;
 	height: max-content;
 	background-color: #F9f9f9;
-	border-radius: 15px;
+	border-radius: 2vw;
 	box-shadow: 4px 4px 10px rgb(90, 90, 90);
-	overflow: hidden;
+	overflow: visible;
 	align-items: center;
+	margin: 1vw;
   }
 
   .TResults {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 150%;
 	height: max-content;
 	background-color: #F9f9f9;
-	border-radius: 15px;
+	border-radius: 2vw;
 	box-shadow: 4px 4px 10px rgb(90, 90, 90);
-	overflow: hidden;
+	overflow: visible;
 	align-items: center;
+	margin: 1vw;
   }
   
   .SectionHeading {
 	width: 90%;
-	font-size: 34px;
+	font-size: 1vw;
 	padding-left: 20px;
 	padding-bottom: 15px;
 	color: #333333;
@@ -91,6 +106,7 @@ input[type="file"] {
 	user-select: none;
 	margin: 10px;
 	margin-bottom: 0.5em;
+	justify-content: center;
   }
   
   .DragAndDropArea {
