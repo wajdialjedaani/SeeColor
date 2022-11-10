@@ -106,13 +106,18 @@
       text-align: center;
       row-gap: 2vw;
       max-width: 1400px;
+      max-height: 100vh;
       margin: 0 auto;
       justify-content: center;
       list-style-type: disc inside;
       font-size: 3vw;
     }
-      
-      
+    
+    .nav-menu.active:ul:li {
+      justify-content: center;
+      align-item: center;
+    }
+     
     .nav-menu.active:ul{
       display: flex;
       justify-content: center;
