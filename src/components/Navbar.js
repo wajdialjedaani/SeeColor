@@ -34,36 +34,27 @@ function Navbar() {
                     <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                 </div>
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
+                    <li className='nav-item1'>
                         <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                             Home
                         </Link>
                     </li>
-                </ul>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
+                    <li className='nav-item2'>
                         <Link to='/project-background' className='nav-links' onClick={closeMobileMenu}>
                             Background
                         </Link>
                     </li>
-                </ul>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
+                    <li className='nav-item3'>
                         <Link to='/project' className='nav-links' onClick={closeMobileMenu}>
                             Project
                         </Link>
                     </li>
-                </ul>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
+                    <li className='nav-item4'>
                         <Link to='/research-links' className='nav-links' onClick={closeMobileMenu}>
                             Research Links
                         </Link>
                     </li>
                 </ul>
-                
-               {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} 
-                    <Link to='/register-or-login' className='Sign-Up' onClick={closeMobileMenu}></Link> */}
             </div>
         </nav>
     </>
@@ -71,20 +62,3 @@ function Navbar() {
 }
 
 export default Navbar
-
-/* LOGIN REMOVED:
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
-                        <Link to='/project' className='nav-links' onClick={Home.handleGuestModeSubmit}>
-                            Continue as Guest
-                        </Link>
-                    </li>
-                </ul>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
-                        <Link to='/login' className='nav-links' onClick={closeMobileMenu}>
-                            Login
-                        </Link>
-                    </li>
-                </ul>
-                */
