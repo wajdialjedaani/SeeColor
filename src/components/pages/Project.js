@@ -585,28 +585,26 @@ const Project = () => {
         </div>
         <div className="Results">
           <h2 className="SectionHeading">Results</h2>
-          <div style={{ width: "90%" }}>
+          <div id="results">
+            <div className="MResults">
+              <h3 className="SectionHeading">Monochromacy Results</h3>
+              <div style={{ width: "90%" }}>
+              </div>
+              <div id="mresults"></div>
+            </div>
+            <div className="PDResults">
+              <h3 className="SectionHeading">Protanopia / Deuteranopia Results</h3>
+              <div style={{ width: "90%" }}>
+              </div>
+              <div id="pdresults"></div>
+            </div>
+            <div className="TResults">
+              <h3 className="SectionHeading">Tritanopia Results</h3>
+              <div style={{ width: "90%" }}>
+              </div>
+              <div id="tresults"></div>
+            </div>
           </div>
-          <div className="MResults">
-          <h2 className="SectionHeading">Monochromacy Results</h2>
-          <div style={{ width: "90%" }}>
-          </div>
-          <div id="mresults"></div>
-        </div>
-        <div className="PDResults">
-          <h2 className="SectionHeading">Protanopia
-          /Deuteranopia Results</h2>
-          <div style={{ width: "90%" }}>
-          </div>
-          <div id="pdresults"></div>
-        </div>
-        <div className="TResults">
-          <h2 className="SectionHeading">Tritanopia Results</h2>
-          <div style={{ width: "90%" }}>
-          </div>
-          <div id="tresults"></div>
-        </div>
-          <div id="results"></div>
         </div>
       </div>
       <form action="#">

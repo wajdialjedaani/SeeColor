@@ -36,7 +36,7 @@ input[type="file"] {
 	display: flex;
     flex-direction: column;
 	height: max-content;
-    width: 40%;
+    width: 31%;
     background-color: #F9f9f9;
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgb(90 90 90);
@@ -46,8 +46,8 @@ input[type="file"] {
   }
   .Results {
 	display: flex;
-	flex-direction: row;
-	width: 55%;
+	flex-direction: column;
+	width: 65%;
 	height: max-content;
 	background-color: #F9f9f9;
 	border-radius: 1vw;
@@ -59,45 +59,51 @@ input[type="file"] {
   
   .MResults {
 	display: flex;
-	flex-direction: column;
-	width: 150%;
-	height: max-content;
-	background-color: #F9f9f9;
-	border-radius: 2vw;
-	box-shadow: 4px 4px 10px rgb(90, 90, 90);
-	overflow: visible;
-	align-items: center;
-	margin: 1vw;
+    flex-direction: column;
+    width: calc(96%/3);
+    padding: 0.75vw;
+    height: max-content;
+    background-color: #F9f9f9;
+    border-radius: 2vw;
+    box-shadow: 4px 4px 10px rgb(90 90 90);
+    overflow: visible;
+    align-items: center;
+    margin: 1vw;
+    font-size: 1vw;
   }
 
   .PDResults {
 	display: flex;
-	flex-direction: column;
-	width: 150%;
-	height: max-content;
-	background-color: #F9f9f9;
-	border-radius: 2vw;
-	box-shadow: 4px 4px 10px rgb(90, 90, 90);
-	overflow: visible;
-	align-items: center;
-	margin: 1vw;
+    flex-direction: column;
+    width: calc(96%/3);
+    padding: 0.75vw;
+    height: max-content;
+    background-color: #F9f9f9;
+    border-radius: 2vw;
+    box-shadow: 4px 4px 10px rgb(90 90 90);
+    overflow: visible;
+    align-items: center;
+    margin: 1vw;
+    font-size: 1vw;
   }
 
   .TResults {
 	display: flex;
-	flex-direction: column;
-	width: 150%;
-	height: max-content;
-	background-color: #F9f9f9;
-	border-radius: 2vw;
-	box-shadow: 4px 4px 10px rgb(90, 90, 90);
-	overflow: visible;
-	align-items: center;
-	margin: 1vw;
+    flex-direction: column;
+    width: calc(96%/3);
+    padding: 0.75vw;
+    height: max-content;
+    background-color: #F9f9f9;
+    border-radius: 2vw;
+    box-shadow: 4px 4px 10px rgb(90 90 90);
+    overflow: visible;
+    align-items: center;
+    margin: 1vw;
+    font-size: 1vw;
   }
   
   .SectionHeading {
-	width: 90%;
+	width: 97%;
 	font-size: 1vw;
 	padding-left: 20px;
 	padding-bottom: 15px;
@@ -107,6 +113,44 @@ input[type="file"] {
 	margin: 10px;
 	margin-bottom: 0.5em;
 	justify-content: center;
+    font-size: 2vw;
+  }
+
+  .MResults > h3 {
+	width: 90%;
+	padding: 15px;
+	color: #333333;
+	border-bottom: 3px solid #333333;
+	user-select: none;
+	margin: 10px;
+	margin-bottom: 0.5em;
+	justify-content: center;
+    font-size: 1.5vw;
+  }
+  
+  .PDResults > h3 {
+	width: 95%;
+	padding: 5px;
+	color: #333333;
+	border-bottom: 3px solid #333333;
+	user-select: none;
+	margin: 0.5em;
+	margin-bottom: 0.5em;
+	margin-top: 1em;
+	justify-content: center;
+    font-size: 1.1vw;
+  }
+
+  .TResults > h3 {
+	width: 90%;
+	padding: 15px;
+	color: #333333;
+	border-bottom: 3px solid #333333;
+	user-select: none;
+	margin: 10px;
+	margin-bottom: 0.5em;
+	justify-content: center;
+    font-size: 1.5vw;
   }
   
   .DragAndDropArea {
@@ -176,14 +220,19 @@ input[type="file"] {
 
 canvas{
 	display: block;
-	max-width: calc(100vw/3);
+	max-width: calc(100vw/3.5);
 	height: auto;
     padding-bottom: 3vw;
 	padding-top: 3vw;
 }
 
 #results {
-	width:40vw;
+    width: 65vw;
     column-count: 3;
     padding-bottom: 3vh;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
 }
