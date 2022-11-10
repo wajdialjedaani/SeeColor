@@ -105,7 +105,8 @@
     .nav-menu.active {
       text-align: center;
       row-gap: 2vw;
-      width: 40vw;
+      max-width: 1400px;
+      margin: 0 auto;
       justify-content: center;
       list-style-type: disc inside;
       font-size: 3vw;
