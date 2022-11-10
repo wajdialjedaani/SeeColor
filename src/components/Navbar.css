@@ -42,15 +42,6 @@
     width: 60vw;
     justify-content: center;
   }
-  
-  .nav-menu.active:li {
-    display: grid;
-    grid-template-rows: repeat(4, auto);
-    text-align: center;
-    width: 60vw;
-    justify-content: center;
-    list-style-type: disc inside;
-  }
 
   .nav-item {
     height: 80px;
@@ -109,7 +100,7 @@
       z-index: 1;
     }
   
-    .nav-menu.active:li {
+    .nav-menu.active {
       display: grid;
       text-align: center;
       row-gap: 2vw;
