@@ -578,7 +578,7 @@ const Project = () => {
         <div className="PosterDragAndDrop">
           <h2 className="SectionHeading">Color Contrast Tester</h2>
             <label class="file" >
-              <input type="file" id="imgfile" onChange={getDataFromImage} onClick={showLoader}/>
+              <input type="file" id="imgfile" onChange={getDataFromImage} onInput={showLoader}/>
               Click to Upload an Image
             </label>
             <canvas id="canvas">

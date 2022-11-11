@@ -7,11 +7,6 @@ input[type="file"] {
 }
 
 .file {
-	font-size: 100%;
-	justify-content: space-around;
-}
-
-.file {
     display: flex;
 	flex-direction: column;
 	margin-top: 1em;
@@ -22,6 +17,8 @@ input[type="file"] {
 	box-shadow: 4px 4px 10px rgb(90, 90, 90);
 	overflow: hidden;
 	align-items: center;
+	font-size: 1.25vw;
+	justify-content: space-around;
 }
 
 .UploadUIContainer {
@@ -245,6 +242,6 @@ canvas{
 
 .Loader {
 	width: 100%;
-	display: flex;
+	display: none;
 	justify-content: center;
 }
