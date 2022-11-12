@@ -671,7 +671,6 @@ const Project = () => {
               Your browser does not support the HTML canvas tag.
             </canvas>
         </div>
-        <canvas id="resultsChart" width="200" height="200"></canvas>
         <div className="Results">
           <h2 className="SectionHeading">Results</h2>
           <div className="Loader">
@@ -701,6 +700,7 @@ const Project = () => {
               </div>
               <div id="tresults"></div>
             </div>
+            <canvas id="resultsChart" width="200" height="200"></canvas>
           </div>
         </div>
       </div>
