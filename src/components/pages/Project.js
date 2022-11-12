@@ -544,6 +544,10 @@ const getDataFromImage = () => {
   const image = new Image();
   const file = imgFile.files[0];
   const fileReader = new FileReader();
+  const fileType = document.getElementById("imgfile").value.slice(-3).toLowerCase();
+  if (fileType == 'pdf') {
+    console.log("PDF Detected");
+  }
 
   // Whenever file & image is loaded procced to extract the information from the image
   fileReader.onload = () => {
@@ -594,8 +598,8 @@ const Project = () => {
         <div className="PosterDragAndDrop">
           <h2 className="SectionHeading">Color Contrast Tester</h2>
             <label class="file" >
-              <input type="file" id="imgfile" onChange={getDataFromImage} onInput={showLoader} accept="image/*"/>
-              Click to Upload an Image
+              <input type="file" id="imgfile" onChange={getDataFromImage} onInput={showLoader} accept="application/pdf, image/*"/>
+              Click to Upload an Image / PDF
             </label>
             <canvas id="canvas">
               Your browser does not support the HTML canvas tag.
