@@ -1,12 +1,16 @@
 import "./Project.css"
 import React, { useState } from "react";
-import MagicDropZone from "react-magic-dropzone"
-import { toast } from "react-toastify";
+//import MagicDropZone from "react-magic-dropzone"
+//import { toast } from "react-toastify";
 //import { useNavigate } from "react-router-dom";
 //import Cookies from "universal-cookie";
 import image from "../../images/low-poly-grid.svg"
 import { ClipLoader } from "react-spinners";
-import { CenterFocusStrong } from "@mui/icons-material";
+//import { CenterFocusStrong } from "@mui/icons-material";
+import Chart from 'chart.js/auto';
+
+let resultsChart;
+let chartReset = 0;
 
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //  Convert each pixel value ( number ) to hexadecimal ( string ) with base 16
@@ -268,9 +272,49 @@ const contrastTest = (rgbTestValues) =>{
   document.getElementsByClassName('PDResults')[0].style.display = 'block';
   document.getElementsByClassName('TResults')[0].style.display = 'block';
   //display all value pairs and their contrast
- printContrasts(ratios);
- printPD(ratios);
- printT(ratios);
+ let mContrast = printContrasts(ratios);
+ let pdContrast = printPD(ratios);
+ let tContrast = printT(ratios);
+
+
+ printChart(mContrast, pdContrast, tContrast);
+}
+
+const printChart = (mContrast, pdContrast, tContrast) => {
+  const ctx = document.getElementById('resultsChart');
+
+  if(chartReset == 1){
+    resultsChart.destroy();
+  }
+
+resultsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['MonoChromacy', 'Protanopia/Deuteranopia', 'Tritanopia'],
+        datasets: [{
+            label: 'Contrast Ratings',
+            data: [mContrast, pdContrast, tContrast],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 }
 
 //decide which tests the colours will display for
@@ -282,7 +326,7 @@ const getColourRange = (hue) =>{
   
   //ranges might need adjusted
   //red
-  if(hue.hue > 349 || hue.hue < 11 ){
+  if(hue.hue > 320 || hue.hue < 11 ){
     return 'PD';
   }
   //green
@@ -311,6 +355,7 @@ const printPD = (ratios) =>{
   const numRatiosToPrint = ratios.length;
 
   let foundNone = true;
+  let pdContrast = 0;
 
   for (let i = 0; i < numRatiosToPrint; i += 1){
 
@@ -327,6 +372,10 @@ const printPD = (ratios) =>{
     }
     else {
       continue;
+    }
+
+    if(ratios[i].contrastRatio > pdContrast){
+      pdContrast = ratios[i].contrastRatio;
     }
 
     //create test result elements
@@ -384,6 +433,9 @@ const printPD = (ratios) =>{
     naElement.appendChild(document.createTextNode("NA"));
     pdresultsContainer.appendChild(naElement);
   }
+  else {
+    return pdContrast;
+  }
 }
 
 //print the tritanopia results
@@ -395,6 +447,7 @@ const printT = (ratios) =>{
   const numRatiosToPrint = ratios.length;
 
   let foundNone = true;
+  let tContrast = 0;
 
   for (let i = 0; i < numRatiosToPrint; i += 1){
 
@@ -411,6 +464,10 @@ const printT = (ratios) =>{
     }
     else {
       continue;
+    }
+
+    if(ratios[i].contrastRatio > tContrast){
+      tContrast = ratios[i].contrastRatio;
     }
 
     //create test result elements
@@ -466,6 +523,9 @@ const printT = (ratios) =>{
     naElement.appendChild(document.createTextNode("NA"));
     tresultsContainer.appendChild(naElement);
   }
+  else{
+    return tContrast;
+  }
 
 }
 
@@ -481,15 +541,15 @@ const printContrasts = (ratios) =>{
   //may be made into parametre
   const numRatiosToPrint = 10;
 
+  let mContrast = 0;
+
   for (let i = 0; i < numRatiosToPrint; i += 1){
 
-    //get hue of both colour
-    let hue1 = rgb_to_h(ratios[i].colour1.r, ratios[i].colour1.g, ratios[i].colour1.b);
-    let hue2 = rgb_to_h(ratios[i].colour2.r, ratios[i].colour2.g, ratios[i].colour2.b);
+    if(ratios[i].contrastRatio > mContrast){
+      mContrast = ratios[i].contrastRatio;
+    }
 
-    //decide which tests the colours will display for
-    let range1 = getColourRange(hue1);
-    let range2 = getColourRange(hue2);
+
 
     //create test result elements
     const contrastElement = document.createElement("div");
@@ -537,6 +597,8 @@ const printContrasts = (ratios) =>{
       mresultsContainer.appendChild(colour1Element);
       mresultsContainer.appendChild(colour2Element);
   }
+
+  return mContrast;
 }
 
 const getDataFromImage = () => {
@@ -548,6 +610,7 @@ const getDataFromImage = () => {
   if (fileType == 'pdf') {
     console.log("PDF Detected");
   }
+
 
   // Whenever file & image is loaded procced to extract the information from the image
   fileReader.onload = () => {
@@ -576,7 +639,10 @@ const getDataFromImage = () => {
        * while trying to visually maintin the original image as much as possible
        */
       const quantColors = quantization(rgbArray, 0);
-      contrastTest(quantColors);
+      const ratings = contrastTest(quantColors);
+
+      chartReset = 1;
+
     };
     image.src = fileReader.result;
   };
@@ -605,6 +671,7 @@ const Project = () => {
               Your browser does not support the HTML canvas tag.
             </canvas>
         </div>
+        <canvas id="resultsChart" width="200" height="200"></canvas>
         <div className="Results">
           <h2 className="SectionHeading">Results</h2>
           <div className="Loader">
@@ -646,35 +713,3 @@ const Project = () => {
 
 export default Project;
 
-
-// <img src={image} alt="down for temporary maintenance"/>
-
-
-/* <div className="GuestUIContainer">
-        <div className="PosterDragAndDrop">
-          <h2 className="SectionHeading">Upload a Poster</h2>
-          <MagicDropZone
-            className="DragAndDropArea"
-            accept=".jpg, .png, .jpeg"
-            onDrop={fileDrop}
-          >
-            {filePreview === null ? (
-              "Drop your poster here"
-            ) : (
-              <img className="PosterImg" src={filePreview} alt="User Upload" />
-            )}
-          </MagicDropZone>
-        </div>
-        <div className="PosterRatingContainer">
-          <h2 className="SectionHeading">Accessibility Score</h2>
-          <div style={{ width: "95%" }}>
-            <BarGraph chartData={BarGraphData.build} />
-            <p className="TimeToCalculate">
-              {calculating
-                ? `Calculating score...`
-                : `Calculated in ${totalCalculationTime} seconds`}
-            </p>
-          </div>
-        </div>
-      </div>
-      <ToastContainer autoClose={1000} limit={3} />*/
