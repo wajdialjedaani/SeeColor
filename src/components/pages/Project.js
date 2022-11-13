@@ -721,7 +721,6 @@ const Project = () => {
               </div>
               <div id="tresults"></div>
             </div>
-            <canvas id="resultsChart" width="200" height="200"></canvas>
           </div>
         </div>
       </div>
