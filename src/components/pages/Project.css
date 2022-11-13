@@ -235,8 +235,8 @@ input[type="file"] {
 
 #resultsChart{
 	display: block;
-	max-width: calc(90vw);
-	height: auto;
+    max-width: 45vw;
+    max-height: 40vw;
     padding-bottom: 3vw;
 	padding-top: 3vw;
 }

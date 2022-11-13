@@ -270,6 +270,7 @@ const contrastTest = (rgbTestValues) =>{
 
   document.getElementsByClassName('Loader')[0].style.display = 'none';
   document.getElementById('detailButton').style.display = 'flex';
+  document.getElementById('resultsChart').style.display = 'block';
   //display all value pairs and their contrast
  let mContrast = printContrasts(ratios);
  let pdContrast = printPD(ratios);
@@ -669,6 +670,7 @@ const Project = () => {
   const [active, setButtonText] = useState(false);
   const showLoader = event => {
     document.getElementsByClassName('Loader')[0].style.display = 'flex';
+    document.getElementById('resultsChart').style.display = 'none';
     document.getElementsByClassName('MResults')[0].style.display = 'none';
     document.getElementsByClassName('PDResults')[0].style.display = 'none';
     document.getElementsByClassName('TResults')[0].style.display = 'none';
