@@ -669,9 +669,7 @@ const Project = () => {
               <input type="file" id="imgfile" onChange={getDataFromImage} onInput={showLoader} accept="application/pdf, image/*"/>
               Click to Upload an Image / PDF
             </label>
-            <canvas id="canvas">
-              Your browser does not support the HTML canvas tag.
-            </canvas>
+            <canvas id="canvas">Your browser does not support the HTML canvas tag.</canvas>
         </div>
         <div className="Results">
           <h2 className="SectionHeading">Results</h2>
