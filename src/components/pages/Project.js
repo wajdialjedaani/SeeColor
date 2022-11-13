@@ -669,8 +669,14 @@ const getDataFromImage = () => {
   };
   fileReader.readAsDataURL(file);
 }
+/*
+function generatePDF() {
+  var element = document.getElementsByClassName('Results')[0];
+  html2pdf(element);
+}
 
-
+<button id="PDFButton" onClick={generatePDF} >Export Results</button>
+*/
 const Project = () => {
   var detailsShown = 'none';
   const [active, setButtonText] = useState(false);
@@ -701,13 +707,14 @@ const Project = () => {
   }
   return (
     <div>
+    <script src="html2pdf.bundle.min.js"></script>
     <img src={image} alt="poly-grid" id="background"/>
       <div className="UploadUIContainer">
         <div className="PosterDragAndDrop">
           <h2 className="SectionHeading">Color Contrast Tester</h2>
             <label class="file" >
-              <input type="file" id="imgfile" onChange={getDataFromImage} onInput={showLoader} accept="application/pdf, image/*"/>
-              Click to Upload an Image / PDF
+              <input type="file" id="imgfile" onChange={getDataFromImage} onInput={showLoader} accept="image/*"/>
+              Click to Upload an Image
             </label>
             <canvas id="canvas">Your browser does not support the HTML canvas tag.</canvas>
         </div>
@@ -724,7 +731,6 @@ const Project = () => {
             </div>
           <div id="results">
             <canvas id="resultsChart" width={200} height="200"></canvas>
-         
             <div className="MResults">
               <h3 className="SectionHeading">Monochromacy Results</h3>
               <div style={{ width: "90%"}}>
