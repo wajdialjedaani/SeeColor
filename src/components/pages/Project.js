@@ -272,9 +272,13 @@ const contrastTest = (rgbTestValues) =>{
   document.getElementById('detailButton').style.display = 'flex';
   document.getElementById('resultsChart').style.display = 'block';
   //display all value pairs and their contrast
- let mContrast = printContrasts(ratios);
- let pdContrast = printPD(ratios);
- let tContrast = printT(ratios);
+  let mContrast = 0;
+  let pdContrast = 0;
+  let tContrast = 0;
+
+  mContrast = printContrasts(ratios);
+  pdContrast = printPD(ratios);
+  tContrast = printT(ratios);
 
 
  printChart(mContrast, pdContrast, tContrast);
@@ -447,6 +451,7 @@ const printPD = (ratios) =>{
     const naElement = document.createElement("div");
     naElement.appendChild(document.createTextNode("NA"));
     pdresultsContainer.appendChild(naElement);
+    return 0;
   }
   else {
     return pdContrast;
@@ -537,6 +542,7 @@ const printT = (ratios) =>{
     const naElement = document.createElement("div");
     naElement.appendChild(document.createTextNode("NA"));
     tresultsContainer.appendChild(naElement);
+    return 0;
   }
   else{
     return tContrast;
@@ -558,7 +564,7 @@ const printContrasts = (ratios) =>{
 
   let mContrast = 0;
 
-  for (let i = 0; i < numRatiosToPrint; i += 1){
+  for (let i = 0; i < numRatiosToPrint, i < ratios.length; i += 1){
 
     if(ratios[i].contrastRatio > mContrast){
       mContrast = ratios[i].contrastRatio;
