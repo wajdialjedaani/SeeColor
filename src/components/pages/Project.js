@@ -282,6 +282,8 @@ const contrastTest = (rgbTestValues) =>{
 const printChart = (mContrast, pdContrast, tContrast) => {
   const ctx = document.getElementById('resultsChart');
 
+  Chart.defaults.font.size = 20;
+
   if(chartReset == 1){
     resultsChart.destroy();
   }
@@ -291,17 +293,17 @@ resultsChart = new Chart(ctx, {
     data: {
         labels: ['MonoChromacy', 'Protanopia/Deuteranopia', 'Tritanopia'],
         datasets: [{
-            label: 'Contrast Ratings',
+            label: 'Contrast Ratings-High values indicate less contrast',
             data: [mContrast, pdContrast, tContrast],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(255, 206, 86, 0.8)'
+                'rgba(88, 0, 126, 1.0)',
+                'rgba(126, 88, 0, 1.0)',
+                'rgba(0, 126, 88, 1.0)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)'
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 1)'
             ],
             borderWidth: 1
         }]
@@ -719,6 +721,7 @@ const Project = () => {
               </div>
               <div id="tresults"></div>
             </div>
+            <canvas id="resultsChart" width="200" height="200"></canvas>
           </div>
         </div>
       </div>
