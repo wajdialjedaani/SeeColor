@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import image from "../../images/low-poly-grid.svg"
 import { ClipLoader } from "react-spinners";
 //import { CenterFocusStrong } from "@mui/icons-material";
-import Chart from 'chart.js/auto';
+import Chart, { layouts } from 'chart.js/auto';
 import { display } from "@mui/system";
 
 let resultsChart;
@@ -293,8 +293,8 @@ resultsChart = new Chart(ctx, {
     data: {
         labels: ['MonoChromacy', 'Protanopia/Deuteranopia', 'Tritanopia'],
         datasets: [{
-            label: 'Contrast Ratings-High values indicate less contrast',
-            data: [mContrast, pdContrast, tContrast],
+            label:"rating",
+            data: [mContrast * 10, pdContrast * 10, tContrast * 10],
             backgroundColor: [
                 'rgba(88, 0, 126, 1.0)',
                 'rgba(126, 88, 0, 1.0)',
@@ -313,7 +313,20 @@ resultsChart = new Chart(ctx, {
             y: {
                 beginAtZero: true
             }
-        }
+        },
+        layout:{
+          padding: 2
+        },
+
+        plugins:{
+          title:{
+            display:true,
+            text:"Contrast Ratings - High values indicate less contrast",
+          }
+        },
+
+        responsive: true,
+        maintainAspectRatio: true
     }
 });
 }
@@ -702,7 +715,8 @@ const Project = () => {
             />
             </div>
           <div id="results">
-            <canvas id="resultsChart" width="200" height="200"></canvas>
+            <canvas id="resultsChart" width={200} height="200"></canvas>
+         
             <div className="MResults">
               <h3 className="SectionHeading">Monochromacy Results</h3>
               <div style={{ width: "90%"}}>

@@ -60,6 +60,7 @@ input[type="file"] {
 	z-index: 3;
 	border-width: 0.5vw!important;
   }
+  
   .MResults {
 	display: flex;
     flex-direction: column;
@@ -224,9 +225,17 @@ input[type="file"] {
 	}
   }
 
-canvas{
+#canvas{
 	display: block;
 	max-width: calc(100vw/3.5);
+	height: auto;
+    padding-bottom: 3vw;
+	padding-top: 3vw;
+}
+
+#resultsChart{
+	display: block;
+	max-width: calc(90vw);
 	height: auto;
     padding-bottom: 3vw;
 	padding-top: 3vw;
