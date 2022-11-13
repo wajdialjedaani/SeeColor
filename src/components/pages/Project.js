@@ -8,6 +8,7 @@ import image from "../../images/low-poly-grid.svg"
 import { ClipLoader } from "react-spinners";
 //import { CenterFocusStrong } from "@mui/icons-material";
 import Chart from 'chart.js/auto';
+import { display } from "@mui/system";
 
 let resultsChart;
 let chartReset = 0;
@@ -268,9 +269,7 @@ const contrastTest = (rgbTestValues) =>{
   ratios = sortByKey(ratios, 'contrastRatio');
 
   document.getElementsByClassName('Loader')[0].style.display = 'none';
-  document.getElementsByClassName('MResults')[0].style.display = 'block';
-  document.getElementsByClassName('PDResults')[0].style.display = 'block';
-  document.getElementsByClassName('TResults')[0].style.display = 'block';
+  document.getElementById('detailButton').style.display = 'flex';
   //display all value pairs and their contrast
  let mContrast = printContrasts(ratios);
  let pdContrast = printPD(ratios);
@@ -651,12 +650,32 @@ const getDataFromImage = () => {
 
 
 const Project = () => {
+  var detailsShown = 'none';
+  const [active, setButtonText] = useState(false);
   const showLoader = event => {
     document.getElementsByClassName('Loader')[0].style.display = 'flex';
     document.getElementsByClassName('MResults')[0].style.display = 'none';
     document.getElementsByClassName('PDResults')[0].style.display = 'none';
     document.getElementsByClassName('TResults')[0].style.display = 'none';
   };
+
+  const detailsClick = event => {
+    if (document.getElementById('resultsChart').style.display == 'block') {
+      detailsShown = 'block';
+      document.getElementById('resultsChart').style.display = 'none';
+      document.getElementsByClassName('MResults')[0].style.display = 'block';
+      document.getElementsByClassName('PDResults')[0].style.display = 'block';
+      document.getElementsByClassName('TResults')[0].style.display = 'block';
+    }
+    else {
+      detailsShown = 'none';
+      document.getElementById('resultsChart').style.display = 'block';
+      document.getElementsByClassName('MResults')[0].style.display = 'none';
+      document.getElementsByClassName('PDResults')[0].style.display = 'none';
+      document.getElementsByClassName('TResults')[0].style.display = 'none';
+    }
+    setButtonText(!active);
+  }
   return (
     <div>
     <img src={image} alt="poly-grid" id="background"/>
@@ -667,13 +686,11 @@ const Project = () => {
               <input type="file" id="imgfile" onChange={getDataFromImage} onInput={showLoader} accept="application/pdf, image/*"/>
               Click to Upload an Image / PDF
             </label>
-            <canvas id="canvas">
-              Your browser does not support the HTML canvas tag.
-            </canvas>
+            <canvas id="canvas">Your browser does not support the HTML canvas tag.</canvas>
         </div>
-        <canvas id="resultsChart" width="200" height="200"></canvas>
         <div className="Results">
           <h2 className="SectionHeading">Results</h2>
+          <button id="detailButton" onClick={detailsClick} > { active ? "Hide Details" : "Show Details" } </button>
           <div className="Loader">
             <ClipLoader
                 color="#00853e"
@@ -683,21 +700,22 @@ const Project = () => {
             />
             </div>
           <div id="results">
+            <canvas id="resultsChart" width="200" height="200"></canvas>
             <div className="MResults">
               <h3 className="SectionHeading">Monochromacy Results</h3>
-              <div style={{ width: "90%" }}>
+              <div style={{ width: "90%"}}>
               </div>
               <div id="mresults"></div>
             </div>
             <div className="PDResults">
               <h3 className="SectionHeading">Protanopia / Deuteranopia Results</h3>
-              <div style={{ width: "90%" }}>
+              <div style={{ width: "90%"}}>
               </div>
               <div id="pdresults"></div>
             </div>
             <div className="TResults">
               <h3 className="SectionHeading">Tritanopia Results</h3>
-              <div style={{ width: "90%" }}>
+              <div style={{ width: "90%"}}>
               </div>
               <div id="tresults"></div>
             </div>
