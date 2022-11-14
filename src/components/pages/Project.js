@@ -9,6 +9,7 @@ import { ClipLoader } from "react-spinners";
 //import { CenterFocusStrong } from "@mui/icons-material";
 import Chart, { layouts } from 'chart.js/auto';
 import { display } from "@mui/system";
+import jsPDF from 'jspdf';
 
 let resultsChart;
 let chartReset = 0;
@@ -683,6 +684,23 @@ function generatePDF() {
 <button id="PDFButton" onClick={generatePDF} >Export Results</button>
 */
 const Project = () => {
+  const handleGeneratePdf = () => {
+    let pdf = new jsPDF('p', 'pt', 'letter');
+    let pWidth = pdf.internal.pageSize.width; // 595.28 is the width of a4
+    let srcWidth = document.getElementsByClassName('Results')[0].scrollWidth;
+    let margin = 18; // narrow margin - 1.27 cm (36);
+    let scale = (pWidth - margin * 2) / srcWidth;
+    pdf.html(document.getElementsByClassName('Results')[0], {
+        x: margin,
+        y: margin,
+        html2canvas: {
+            scale: scale,
+        },
+        async callback(doc) {
+          await doc.save('results');
+        }
+    });
+	};
   var detailsShown = 'none';
   const [active, setButtonText] = useState(false);
   const showLoader = event => {
@@ -713,7 +731,6 @@ const Project = () => {
   }
   return (
     <div>
-    <script src="html2pdf.bundle.min.js"></script>
     <img src={image} alt="poly-grid" id="background"/>
       <div className="UploadUIContainer">
         <div className="PosterDragAndDrop">
@@ -761,6 +778,9 @@ const Project = () => {
               <div id="tresults"></div>
             </div>
           </div>
+          <button className="exportButton" onClick={handleGeneratePdf}>
+            Export Results 
+          </button>
         </div>
       </div>
       <form action="#">
