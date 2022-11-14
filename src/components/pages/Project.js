@@ -733,11 +733,13 @@ const Project = () => {
                 cssOverride={{display: "flex"}}
             />
             </div>
-          <div id="results">
+          <div className="suggestions">
             <canvas id="resultsChart" width={200} height="200"></canvas>
+            <div id="suggestions">
             <p id="suggestions">Suggestions: To improve contrast of adjacent colours, make sure they have enough value difference. 
             In Other words, a dark colour and a light colour will have more value difference and therefore more contrast. 
             The checker in Research Links will allow you to put colour hex values in and see how well they contrast and which WCAG standards they pass.</p>
+            </div>
             <div className="MResults">
               <h3 className="SectionHeading">Monochromacy Results</h3>
               <div style={{ width: "90%"}}>
