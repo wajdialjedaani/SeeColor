@@ -303,7 +303,7 @@ resultsChart = new Chart(ctx, {
     data: {
         labels: ['MonoChromacy', 'Protanopia/Deuteranopia', 'Tritanopia'],
         datasets: [{
-            label:"rating",
+          label:"rating",
             data: [mContrast * 10, pdContrast * 10, tContrast * 10],
             backgroundColor: [
                 'rgba(88, 0, 126, 1.0)',
@@ -737,9 +737,9 @@ const Project = () => {
             </div>
           <div className="suggestions">
             <div id="suggestions" style={{display: 'none'}}>
-            <p id="suggestions">Suggestions: To improve contrast of adjacent colours, make sure they have enough value difference. 
-            In Other words, a dark colour and a light colour will have more value difference and therefore more contrast. 
-            The checker in Research Links will allow you to put colour hex values in and see how well they contrast and which WCAG standards they pass.</p>
+            <p id="suggestions">Suggestions: To improve contrast of adjacent colors, ensure there is sufficent value difference. 
+            In other words, a darker color and a lighter color will have a larger difference and thus more contrast. 
+            The checker in Research Links will allow you to imput color hex values and see the resulting contrast and which WCAG standards they pass.</p>
             </div>
             <div className="MResults">
               <h3 className="SectionHeading">Monochromacy Results</h3>
