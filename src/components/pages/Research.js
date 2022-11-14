@@ -39,6 +39,8 @@ const Reasearch = () => {
 			<a href="https://chicago.medicine.uic.edu/departments/academic-departments/ophthalmology-visual-sciences/our-department/media-center/eye-facts/color-blindness/">Chicago Medicine UIC</a>
 			<a href="https://www.urmc.rochester.edu/encyclopedia/content.aspx?contenttypeid=134&contentid=526">URMC Rochester</a>
 			<a href="https://www.sunyopt.edu/news/what-it-means-to-be-color-blind-and-what-you-can-do-about-it/">Sunyopt</a>
+			<a href="https://contrastchecker.com/">Contrast Checker</a>
+			<a href="https://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker</a>
     	</div>
 		);
 	};

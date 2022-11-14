@@ -236,6 +236,10 @@ const contrastTest = (rgbTestValues) =>{
           }
         }
 
+        if(Math.abs(rgbTestValues[i].r - rgbTestValues[j.r]) <= 10 || Math.abs(rgbTestValues[i].g - rgbTestValues[j].g) <= 10 || Math.abs(rgbTestValues[i].b - rgbTestValues[j].b) <=10){
+          skip = true;
+        }
+
      //if it has been, skip adding again
      //if not, add it
      if (!skip){
@@ -731,6 +735,9 @@ const Project = () => {
             </div>
           <div id="results">
             <canvas id="resultsChart" width={200} height="200"></canvas>
+            <p id="suggestions">Suggestions: To improve contrast of adjacent colours, make sure they have enough value difference. 
+            In Other words, a dark colour and a light colour will have more value difference and therefore more contrast. 
+            The checker in Research Links will allow you to put colour hex values in and see how well they contrast and which WCAG standards they pass.</p>
             <div className="MResults">
               <h3 className="SectionHeading">Monochromacy Results</h3>
               <div style={{ width: "90%"}}>
