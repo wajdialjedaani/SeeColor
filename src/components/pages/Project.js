@@ -275,6 +275,7 @@ const contrastTest = (rgbTestValues) =>{
   document.getElementsByClassName('Loader')[0].style.display = 'none';
   document.getElementById('detailButton').style.display = 'flex';
   document.getElementById('resultsChart').style.display = 'block';
+  document.getElementById('suggestions').style.display = 'block';
   //display all value pairs and their contrast
   let mContrast = 0;
   let pdContrast = 0;
@@ -690,6 +691,7 @@ const Project = () => {
     document.getElementsByClassName('MResults')[0].style.display = 'none';
     document.getElementsByClassName('PDResults')[0].style.display = 'none';
     document.getElementsByClassName('TResults')[0].style.display = 'none';
+    document.getElementById('suggestions').style.display = 'none';
   };
 
   const detailsClick = event => {
@@ -734,8 +736,7 @@ const Project = () => {
             />
             </div>
           <div className="suggestions">
-            <canvas id="resultsChart" width={200} height="200"></canvas>
-            <div id="suggestions">
+            <div id="suggestions" style={{display: 'none'}}>
             <p id="suggestions">Suggestions: To improve contrast of adjacent colours, make sure they have enough value difference. 
             In Other words, a dark colour and a light colour will have more value difference and therefore more contrast. 
             The checker in Research Links will allow you to put colour hex values in and see how well they contrast and which WCAG standards they pass.</p>
@@ -746,6 +747,7 @@ const Project = () => {
               </div>
               <div id="mresults"></div>
             </div>
+            <canvas id="resultsChart" width={200} height="200"></canvas>
             <div className="PDResults">
               <h3 className="SectionHeading">Protanopia / Deuteranopia Results</h3>
               <div style={{ width: "90%"}}>

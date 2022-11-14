@@ -41,6 +41,7 @@ input[type="file"] {
     overflow: hidden;
     align-items: center;
     justify-content: flex-start;
+    padding-bottom: 2vw;
   }
   .Results {
 	display: flex;
@@ -62,9 +63,15 @@ input[type="file"] {
   }
 
   .suggestions{
-	font-size: 1vw;
-	padding-left: 1vw;
-	color: #333333;
+    color: #333;
+    font-size: 1vw;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  #suggestions > p {
+    padding: 1vw;
+	padding-top: 2vw;
   }
   
   .MResults {
@@ -264,6 +271,7 @@ input[type="file"] {
 	width: 100%;
 	display: none;
 	justify-content: center;
+    padding-bottom: 2vw;
 }
 
 #detailButton {
