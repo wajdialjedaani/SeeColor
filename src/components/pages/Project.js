@@ -7,9 +7,9 @@ import React, { useState } from "react";
 import image from "../../images/low-poly-grid.svg"
 import { ClipLoader } from "react-spinners";
 //import { CenterFocusStrong } from "@mui/icons-material";
-import Chart, { layouts } from 'chart.js/auto';
+import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels'; // from https://chartjs-plugin-datalabels.netlify.app/guide/getting-started.html
-import { display } from "@mui/system";
+//import { display } from "@mui/system";
 import jsPDF from 'jspdf';
 
 let resultsChart;

@@ -215,30 +215,6 @@ input[type="file"] {
 	color: #f6f6f6;
   }
   
-  @media screen and (max-width: 900px) {
-	.GuestUIContainer {
-	  display: flex;
-	  flex-direction: column;
-	  margin-top: 6em;
-	  height: auto;
-	  justify-content: center;
-	  align-items: center;
-	}
-  
-	.PosterDragAndDrop {
-	  width: 95%;
-	}
-  
-	.DragAndDropArea {
-	  height: 100px;
-	}
-  
-	.Results {
-	  width: 95%;
-	  margin-top: 2em;
-	}
-  }
-
 #canvas{
 	display: block;
 	max-width: calc(100vw/3.5);
@@ -316,3 +292,74 @@ input[type="file"] {
     font-size: 1.1vw;
     justify-content: space-around;
 }
+
+  @media screen and (max-width: 900px) {
+	.GuestUIContainer {
+	  display: flex;
+	  flex-direction: column;
+	  margin-top: 6em;
+	  height: auto;
+	  justify-content: center;
+	  align-items: center;
+	}
+	.research-container > p{
+		font-size: 4vw!important;
+		padding-top: 10%;
+	}
+	.research-container > h3{
+		font-size: 6vw!important;
+	}
+	.research-container > a{
+		font-size: 4vw!important;
+		padding-top: 3%;
+	}
+	.PosterDragAndDrop {
+	  width: 95%;
+	}
+  
+	.DragAndDropArea {
+	  height: 100px;
+	}
+  
+	.Results {
+	  width: 95%;
+	  margin-top: 2em;
+	}
+	
+	.UploadUIContainer {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.SectionHeading {
+		font-size: 5vw!important;
+	}
+	.file {
+		font-size: 4vw;
+		height: 10vw;
+	}
+	#infoButton {
+		font-size: 3vw;
+		height: 6vw;
+		margin-right: 9em;
+
+	}
+	#detailButton, .exportButton {
+		font-size: 3vw;
+		height: 6vw;
+	}
+	.suggestions {
+		font-size: 3vw;
+		flex-direction: column;
+	}
+	.MResults, .PDResults, .TResults{
+		width: 60%;
+		font-size: 3vw;
+		align-self: center;
+		margin-bottom: 10%;
+	}
+	#resultsChart {
+		max-width: 90%;
+		max-height: 85%;
+	}
+  }
