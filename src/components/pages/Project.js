@@ -292,7 +292,7 @@ const contrastTest = (rgbTestValues) =>{
 }
 
 const printChart = (mContrast, pdContrast, tContrast) => {
-  const ctx = document.getElementById('resultsChart');
+  const ctxx = document.getElementById('resultsChart');
 
   Chart.defaults.font.size = 20;
   Chart.defaults.set('plugins.datalabels', {
@@ -305,7 +305,7 @@ const printChart = (mContrast, pdContrast, tContrast) => {
 
   const chartStatus = Chart.getChart('resultsChart'); if (chartStatus !== undefined) { chartStatus.destroy(); }
 
-resultsChart = new Chart(ctx, {
+resultsChart = new Chart(ctxx, {
     type: 'bar',
     data: {
         labels: ['MonoChromacy', 'Protanopia/Deuteranopia', 'Tritanopia'],
@@ -330,7 +330,8 @@ resultsChart = new Chart(ctx, {
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                max: 10
             }
         },
         layout:{
@@ -769,6 +770,16 @@ const Project = () => {
     }
     setButtonText(!active);
   }
+
+  const infoClick = event => {
+
+    if(document.getElementById('info').style.display = 'none'){
+      document.getElementById('info').style.display = 'block';
+    }
+    else{
+      document.getElementById('info').style.display = 'none';
+    }
+  }
   return (
     <div>
     <img src={image} alt="poly-grid" id="background"/>
@@ -783,6 +794,7 @@ const Project = () => {
         </div>
         <div className="Results">
           <h2 className="SectionHeading">Results</h2>
+          <button id="infoButton" onClick={infoClick} > { active ? "Hide Info" : "Show Info" } </button>
           <button id="detailButton" onClick={detailsClick} > { active ? "Hide Details" : "Show Details" } </button>
           <div className="Loader">
             <ClipLoader
@@ -793,6 +805,10 @@ const Project = () => {
             />
             </div>
           <div className="suggestions">
+            <div id="info" style={{display: 'none'}}>This test extracts the colour data of the pixels from the image, then calculates the contrast of every colour pair.
+            It compares those contrasts to the four WCAG standards, and decides if they pass or fail.
+            Then it displays the colour pairs relevant to the types of colour blindness, decided by the colour hue ranges.
+            Finally, it defines a chart based on the worst colour pair of each test.</div>
             <div id="suggestions" style={{display: 'none'}}>
             <p id="suggestions">Suggestions: To improve contrast of adjacent colors, ensure there is sufficent value difference. 
             In other words, a darker color and a lighter color will have a larger difference and thus more contrast. 
