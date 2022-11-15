@@ -276,6 +276,7 @@ const contrastTest = (rgbTestValues) =>{
 
   document.getElementsByClassName('Loader')[0].style.display = 'none';
   document.getElementById('detailButton').style.display = 'flex';
+  document.getElementById('infoButton').style.display = 'flex';
   document.getElementById('resultsChart').style.display = 'block';
   document.getElementById('suggestions').style.display = 'block';
   //display all value pairs and their contrast
@@ -331,7 +332,7 @@ resultsChart = new Chart(ctxx, {
         scales: {
             y: {
                 beginAtZero: true,
-                max: 10
+                max: 100
             }
         },
         layout:{
@@ -744,6 +745,7 @@ const Project = () => {
   
   var detailsShown = 'none';
   const [active, setButtonText] = useState(false);
+  const [activeInfo, setButtonTextInfo] = useState(false);
   const showLoader = event => {
     document.getElementsByClassName('Loader')[0].style.display = 'flex';
     document.getElementById('resultsChart').style.display = 'none';
@@ -772,13 +774,14 @@ const Project = () => {
   }
 
   const infoClick = event => {
-
-    if(document.getElementById('info').style.display = 'none'){
-      document.getElementById('info').style.display = 'block';
+    console.log('Info clicked!')
+    if(document.getElementById('information').style.display == 'none'){
+      document.getElementById('information').style.display = 'block';
     }
     else{
-      document.getElementById('info').style.display = 'none';
+      document.getElementById('information').style.display = 'none';
     }
+    setButtonTextInfo(!activeInfo);
   }
   return (
     <div>
@@ -794,7 +797,7 @@ const Project = () => {
         </div>
         <div className="Results">
           <h2 className="SectionHeading">Results</h2>
-          <button id="infoButton" onClick={infoClick} > { active ? "Hide Info" : "Show Info" } </button>
+          <button id="infoButton" onClick={infoClick} > { activeInfo ? "Show Less Info" : "Show More Info" } </button>
           <button id="detailButton" onClick={detailsClick} > { active ? "Hide Details" : "Show Details" } </button>
           <div className="Loader">
             <ClipLoader
@@ -805,14 +808,18 @@ const Project = () => {
             />
             </div>
           <div className="suggestions">
-            <div id="info" style={{display: 'none'}}>This test extracts the colour data of the pixels from the image, then calculates the contrast of every colour pair.
-            It compares those contrasts to the four WCAG standards, and decides if they pass or fail.
-            Then it displays the colour pairs relevant to the types of colour blindness, decided by the colour hue ranges.
-            Finally, it defines a chart based on the worst colour pair of each test.</div>
             <div id="suggestions" style={{display: 'none'}}>
-            <p id="suggestions">Suggestions: To improve contrast of adjacent colors, ensure there is sufficent value difference. 
-            In other words, a darker color and a lighter color will have a larger difference and thus more contrast. 
-            The checker in Research Links will allow you to imput color hex values and see the resulting contrast and which WCAG standards they pass.</p>
+              <p id="suggestions">
+                Suggestions: To improve contrast of adjacent colors, ensure there is sufficent value difference. 
+                In other words, a darker color and a lighter color will have a larger difference and thus more contrast. 
+                The checker in Research Links will allow you to imput color hex values and see the resulting contrast and which WCAG standards they pass.
+              </p>
+              <p id="information" style={{display: 'none'}}>
+                More Information: This test extracts the color data of the pixels from the image, then calculates the contrast of every color pair.
+                It compares those contrasts to the four WCAG standards, and decides if they pass or fail.
+                Then it displays the color pairs relevant to the types of color blindness, decided by the color hue ranges.
+                Finally, it defines a chart based on the worst color pair of each test.
+              </p>
             </div>
             <canvas id="resultsChart" width={200} height="200"></canvas>
             <div className="MResults">

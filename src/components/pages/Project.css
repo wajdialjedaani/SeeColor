@@ -70,7 +70,7 @@ input[type="file"] {
     flex-direction: row-reverse;
   }
 
-  #suggestions > p {
+  #suggestions > p, #information > p {
     padding: 1vw;
 	padding-top: 2vw;
   }
@@ -289,6 +289,20 @@ input[type="file"] {
     justify-content: space-around;
 }
 
+#infoButton {
+	display: none;
+    position: absolute;
+    padding: 1.25em;
+	margin-right: 10em;
+    flex-direction: column;
+    height: 2vw;
+    background-color: #F9f9f9;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgb(90 90 90);
+    overflow: hidden;
+    font-size: 1.1vw;
+    justify-content: space-around;
+}
 .exportButton {
 	display: flex;
 	
