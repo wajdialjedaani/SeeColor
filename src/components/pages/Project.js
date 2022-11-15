@@ -8,6 +8,7 @@ import image from "../../images/low-poly-grid.svg"
 import { ClipLoader } from "react-spinners";
 //import { CenterFocusStrong } from "@mui/icons-material";
 import Chart, { layouts } from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels'; // from https://chartjs-plugin-datalabels.netlify.app/guide/getting-started.html
 import { display } from "@mui/system";
 import jsPDF from 'jspdf';
 
@@ -294,10 +295,15 @@ const printChart = (mContrast, pdContrast, tContrast) => {
   const ctx = document.getElementById('resultsChart');
 
   Chart.defaults.font.size = 20;
+  Chart.defaults.set('plugins.datalabels', {
+    color: '#F9F9F9',
+        font: {
+          weight: 'bold'
+        },
+        formatter: Math.round
+  });
 
-  if(chartReset == 1){
-    resultsChart.destroy();
-  }
+  const chartStatus = Chart.getChart('resultsChart'); if (chartStatus !== undefined) { chartStatus.destroy(); }
 
 resultsChart = new Chart(ctx, {
     type: 'bar',
@@ -305,19 +311,21 @@ resultsChart = new Chart(ctx, {
         labels: ['MonoChromacy', 'Protanopia/Deuteranopia', 'Tritanopia'],
         datasets: [{
           label:"rating",
-            data: [mContrast * 10, pdContrast * 10, tContrast * 10],
+            data: [mContrast * 100, pdContrast * 100, tContrast * 100],
             backgroundColor: [
-                'rgba(88, 0, 126, 1.0)',
-                'rgba(126, 88, 0, 1.0)',
-                'rgba(0, 126, 88, 1.0)'
+                'rgba(0, 133, 62, 1.0)'
             ],
             borderColor: [
                 'rgba(0, 0, 0, 1)',
                 'rgba(0, 0, 0, 1)',
                 'rgba(0, 0, 0, 1)'
             ],
-            borderWidth: 1
-        }]
+            borderWidth: 2,
+        }],
+        datalabels: {
+          align: 'end',
+          anchor: 'start',
+        }
     },
     options: {
         scales: {
@@ -328,18 +336,26 @@ resultsChart = new Chart(ctx, {
         layout:{
           padding: 2
         },
-
         plugins:{
           title:{
             display:true,
             text:"Contrast Ratings - High values indicate less contrast",
           }
         },
-
         responsive: true,
         maintainAspectRatio: true
+    },
+    plugins: [ChartDataLabels],
+    options: {
+      datalabels: {
+        color: 'white',
+        font: {
+          weight: 'bold'
+        },
+        formatter: Math.round
+      }
     }
-});
+  });
 }
 
 //decide which tests the colours will display for
@@ -655,7 +671,7 @@ const getDataFromImage = () => {
        * (transparency). For array value consistency reasons,
        * the alpha is not from 0 to 1 like it is in the RGBA of CSS, but from 0 to 255.
        */
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height, {willReadFrequently: true });
 
       // Convert the image data to RGB values so its much simpler
       const rgbArray = buildRgb(imageData.data);
@@ -685,12 +701,18 @@ function generatePDF() {
 */
 const Project = () => {
   const handleGeneratePdf = () => {
+    let reset = (document.getElementById('resultsChart').style.display == 'block');
+    document.getElementsByClassName('suggestions')[0].style.flexWrap = "wrap";
+    document.getElementById('resultsChart').style.display = 'block';
+    document.getElementsByClassName('MResults')[0].style.display = 'block';
+    document.getElementsByClassName('PDResults')[0].style.display = 'block';
+    document.getElementsByClassName('TResults')[0].style.display = 'block';
     let pdf = new jsPDF('p', 'pt', 'letter');
     let pWidth = pdf.internal.pageSize.width; // 595.28 is the width of a4
-    let srcWidth = document.getElementsByClassName('Results')[0].scrollWidth;
+    let srcWidth = document.getElementsByClassName('UploadUIContainer')[0].scrollWidth;
     let margin = 18; // narrow margin - 1.27 cm (36);
     let scale = (pWidth - margin * 2) / srcWidth;
-    pdf.html(document.getElementsByClassName('Results')[0], {
+    pdf.html(document.getElementsByClassName('UploadUIContainer')[0], {
         x: margin,
         y: margin,
         html2canvas: {
@@ -700,7 +722,25 @@ const Project = () => {
           await doc.save('results');
         }
     });
+    setTimeout(() => { 
+      document.getElementsByClassName('suggestions')[0].style.flexWrap = "nowrap";
+      if(reset) {
+        detailsShown = 'none';
+        document.getElementById('resultsChart').style.display = 'block';
+        document.getElementsByClassName('MResults')[0].style.display = 'none';
+        document.getElementsByClassName('PDResults')[0].style.display = 'none';
+        document.getElementsByClassName('TResults')[0].style.display = 'none';
+      }
+      else {
+        detailsShown = 'block';
+        document.getElementById('resultsChart').style.display = 'none';
+        document.getElementsByClassName('MResults')[0].style.display = 'block';
+        document.getElementsByClassName('PDResults')[0].style.display = 'block';
+        document.getElementsByClassName('TResults')[0].style.display = 'block';
+      }
+     }, 1);
 	};
+  
   var detailsShown = 'none';
   const [active, setButtonText] = useState(false);
   const showLoader = event => {
@@ -735,7 +775,7 @@ const Project = () => {
       <div className="UploadUIContainer">
         <div className="PosterDragAndDrop">
           <h2 className="SectionHeading">Color Contrast Tester</h2>
-            <label class="file" >
+            <label className="file" >
               <input type="file" id="imgfile" onChange={getDataFromImage} onInput={showLoader} accept="image/*"/>
               Click to Upload an Image
             </label>
@@ -758,13 +798,13 @@ const Project = () => {
             In other words, a darker color and a lighter color will have a larger difference and thus more contrast. 
             The checker in Research Links will allow you to imput color hex values and see the resulting contrast and which WCAG standards they pass.</p>
             </div>
+            <canvas id="resultsChart" width={200} height="200"></canvas>
             <div className="MResults">
               <h3 className="SectionHeading">Monochromacy Results</h3>
               <div style={{ width: "90%"}}>
               </div>
               <div id="mresults"></div>
             </div>
-            <canvas id="resultsChart" width={200} height="200"></canvas>
             <div className="PDResults">
               <h3 className="SectionHeading">Protanopia / Deuteranopia Results</h3>
               <div style={{ width: "90%"}}>

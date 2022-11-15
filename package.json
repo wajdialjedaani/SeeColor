@@ -10,6 +10,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^3.9.1",
+    "chartjs-plugin-datalabels": "^2.1.0",
     "extract-colors": "^1.1.22",
     "firebase": "^9.10.0",
     "jspdf": "^2.5.1",
