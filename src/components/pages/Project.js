@@ -293,7 +293,7 @@ const contrastTest = (rgbTestValues) =>{
 }
 
 const printChart = (mContrast, pdContrast, tContrast) => {
-  const ctxx = document.getElementById('resultsChart');
+  const ctx = document.getElementById('resultsChart');
 
   Chart.defaults.font.size = 20;
   Chart.defaults.set('plugins.datalabels', {
@@ -306,7 +306,7 @@ const printChart = (mContrast, pdContrast, tContrast) => {
 
   const chartStatus = Chart.getChart('resultsChart'); if (chartStatus !== undefined) { chartStatus.destroy(); }
 
-resultsChart = new Chart(ctxx, {
+resultsChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: ['MonoChromacy', 'Protanopia/Deuteranopia', 'Tritanopia'],
@@ -328,13 +328,24 @@ resultsChart = new Chart(ctxx, {
           anchor: 'start',
         }
     },
+   
+    plugins: [ChartDataLabels],
     options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100
-            }
+      datalabels: {
+        color: 'white',
+        font: {
+          weight: 'bold'
         },
+        formatter: Math.round
+      },
+      
+      scales: {
+        y: {
+          suggestedMin: 0,
+          suggestedMax: 100
+      }
+    },
+        
         layout:{
           padding: 2
         },
@@ -346,16 +357,6 @@ resultsChart = new Chart(ctxx, {
         },
         responsive: true,
         maintainAspectRatio: true
-    },
-    plugins: [ChartDataLabels],
-    options: {
-      datalabels: {
-        color: 'white',
-        font: {
-          weight: 'bold'
-        },
-        formatter: Math.round
-      }
     }
   });
 }
