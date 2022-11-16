@@ -284,8 +284,7 @@ input[type="file"] {
     justify-content: space-around;
 }
 .exportButton {
-	display: flex;
-	
+	display: none;
     padding: 1.25em;
     flex-direction: column;
     height: 1.5vw;

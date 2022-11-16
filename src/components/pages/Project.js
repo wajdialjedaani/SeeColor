@@ -275,10 +275,12 @@ const contrastTest = (rgbTestValues) =>{
   ratios = sortByKey(ratios, 'contrastRatio');
 
   document.getElementsByClassName('Loader')[0].style.display = 'none';
+  document.getElementsByClassName('exportButton')[0].style.display = 'flex';
   document.getElementById('detailButton').style.display = 'flex';
   document.getElementById('infoButton').style.display = 'flex';
   document.getElementById('resultsChart').style.display = 'block';
   document.getElementById('suggestions').style.display = 'block';
+  
   //display all value pairs and their contrast
   let mContrast = 0;
   let pdContrast = 0;
