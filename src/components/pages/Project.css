@@ -70,6 +70,10 @@ input[type="file"] {
     flex-direction: row-reverse;
   }
 
+  div#suggestions {
+	max-width: 25%;
+  }
+
   #suggestions > p, #information > p {
     padding: 1vw;
 	padding-top: 2vw;
