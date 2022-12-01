@@ -26,7 +26,7 @@
     font-size: 2rem;
     display: flex;
     align-items: center;
-    margin-right: 60vw;
+    margin-right: 80vw;
   }
   
   .fa-typo3 {
@@ -36,13 +36,12 @@
   
   .nav-menu {
     display: grid;
-    padding-right: 5%;
-    grid-template-columns: repeat(4, auto);
+    padding-right: 1.5%;
     grid-gap: 2vw;
     list-style: none;
     text-align: center;
     width: 30vw;
-    justify-content: space-around;
+    justify-content: right;
   }
 
   .nav-item {
@@ -68,114 +67,32 @@
     color: #fff;
   }
   
-  .nav-links-mobile {
-  }
-  
   .menu-icon {
     display: none;
   }
   
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1050px) {
     .NavbarItems {
       position: relative;
     }
   
-    .nav-menu {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 100vh;
-      position: absolute;
-      top: 80px;
-      left: -100%;
-      opacity: 1;
-      transition: all 0.5s ease;
-    }
-  
-    .nav-menu.active {
-      background: #242222;
-      grid-template-rows: repeat(4, auto);
-      row-gap: 2vw;
-      left: 0;
-      opacity: 1;
-      transition: all 0.5s ease;
-      z-index: 1;
-    }
-  
-    .nav-menu.active {
-      text-align: center;
-      row-gap: 2vw;
-      max-width: 100vw;
-      max-height: 100vh;
-      margin: 0 auto;
-      justify-content: center;
-      list-style-type: disc inside;
-      font-size: 3vw;
-    }
-    
-    .nav-menu.active:ul:li {
-      justify-content: center;
-      align-item: center;
-    }
-     
-    .nav-menu.active:ul{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .nav-links {
-      text-align: center;
-      padding: 2rem;
-      width: 100%;
-      display: grid;
-    }
-  
-    .nav-links:hover {
-      background-color: #fff;
-      color: #242424;
-      border-radius: 0;
-    }
-  
     .navbar-logo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform: translate(25%, 50%);
-    }
-  
-    .menu-icon {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translate(-100%, 59%);
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-  
-    .fa-times {
-      color: #fff;
-      font-size: 2rem;
-    }
-  
-    .nav-links-mobile {
-      display: block;
-      text-align: center;
-      margin: 2rem auto;
-      border-radius: 4px;
-      width: 80%;
-      text-decoration: none;
-      font-size: 1.5rem;
-      background-color: transparent;
-      color: #fff;
-      padding: 14px 20px;
-      border: 1px solid #fff;
-      transition: all 0.3s ease-out;
-    }
-  
-    .nav-links-mobile:hover {
-      background: #fff;
-      color: #242424;
-      transition: 250ms;
+      margin-right: 40vw;
     }
   }
+  .css-tzssek-MuiSvgIcon-root {
+    color: #f3f3f3
+  }
+
+  button {
+    background-color: transparent;
+    border: hidden;
+  }
+
+  button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorInherit.MuiIconButton-edgeStart.MuiIconButton-sizeMedium.css-1d6w9lk-MuiButtonBase-root-MuiIconButton-root {
+    justify-content: center;
+  }
+
+  ul {list-style: none} 
+  li {display: block;
+  padding: 0.25vw;}

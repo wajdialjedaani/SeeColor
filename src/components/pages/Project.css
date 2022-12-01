@@ -1,5 +1,10 @@
 #background {
 	margin-top: -5em;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
 }
 
 input[type="file"] {
@@ -228,11 +233,11 @@ input[type="file"] {
 }
 
 #resultsChart{
-	display: block;
+	display: block;	
     max-width: 45vw;
-    max-height: 40vw;
-    padding-bottom: 3vw;
-	padding-top: 3vw;
+    max-height: 60vh;
+    padding-right: 3vw;
+    padding-top: 2vw;
 }
 
 
@@ -319,7 +324,9 @@ input[type="file"] {
 	.PosterDragAndDrop {
 	  width: 95%;
 	}
-  
+	#canvas{
+		max-width: 80%;
+	}
 	.DragAndDropArea {
 	  height: 100px;
 	}
@@ -354,6 +361,10 @@ input[type="file"] {
 	.suggestions {
 		font-size: 3vw;
 		flex-direction: column;
+		width: 95%;
+	}
+	div#suggestions {
+		max-width: 100%;
 	}
 	.MResults, .PDResults, .TResults{
 		width: 60%;
