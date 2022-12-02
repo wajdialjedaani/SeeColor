@@ -96,3 +96,5 @@
   ul {list-style: none} 
   li {display: block;
   padding: 0.25vw;}
+
+  svg { color: #f3f3f3; }
