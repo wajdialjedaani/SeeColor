@@ -1,4 +1,5 @@
-#The SeeColor Accesibility Tool
+# The SeeColor Accesibility Tool
+## Public Website: https://seecolor-unt.web.app/
 More info found here: https://unt-seecolor.web.app/
 
 This tool was developed to solve accessibility difficulties relating to the design and readability of images by enabling users to test different image designs for how accessible the images are for those with different color-blindness conditions.
